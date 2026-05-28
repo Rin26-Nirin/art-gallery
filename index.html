@@ -44,7 +44,6 @@
             pointer-events: auto !important;
         }
 
-        /* Custom Masonry Grid */
         .masonry-grid {
             column-count: 1;
             column-gap: 1rem;
@@ -183,11 +182,10 @@
             <p class="text-white/50 mb-10 max-w-xl mx-auto leading-relaxed">
                 For commission inquiries or business deals, please reach out to me via my Facebook page for the most direct and fastest communication.
             </p>
-            
             <div class="flex justify-center">
-                <a href="https://www.facebook.com/iamkingfofool" target="_blank" 
+                <a href="https://www.facebook.com/yourpagename" target="_blank" 
                    class="inline-flex items-center gap-6 px-10 py-6 bg-[#1877F2] hover:bg-[#166fe5] rounded-2xl shadow-xl shadow-blue-500/10 transition-all duration-300 group transform hover:-translate-y-1">
-                    <div class="w-12 h-12 bg-white/10 rounded-xl flex items-center justify-center shrink-0">
+                    <div class="w-16 h-16 bg-white/10 rounded-xl flex items-center justify-center shrink-0">
                         <i class="fa-brands fa-facebook text-3xl text-white"></i>
                     </div>
                     <div class="text-left">
@@ -207,13 +205,10 @@
     </footer>
 
     <div id="lightbox" class="fixed inset-0 z-50 hidden items-center justify-center bg-black/95 p-4 select-none">
-        <button id="lightbox-close" class="absolute top-4 right-4 p-2 text-white/70 hover:text-white transition-colors z-10"><svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg></button>
-        
+        <button id="lightbox-close" class="absolute top-4 right-4 p-2 text-white/70 hover:text-white transition-colors z-30"><svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg></button>
         <div id="lightbox-swipe-area" class="z-20"></div>
-
         <button id="lightbox-prev" class="absolute left-4 top-1/2 -translate-y-1/2 p-2 text-white/70 hover:text-white transition-colors z-20 md:block hidden"><svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path></svg></button>
         <button id="lightbox-next" class="absolute right-4 top-1/2 -translate-y-1/2 p-2 text-white/70 hover:text-white transition-colors z-20 md:block hidden"><svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg></button>
-        
         <div class="max-w-5xl max-h-[90vh] relative lightbox-image-container flex flex-col items-center justify-center z-10 pointer-events-none">
             <img id="lightbox-image" src="" alt="" class="max-w-full max-h-[85vh] object-contain rounded-lg">
             <p id="lightbox-caption" class="text-center text-white/70 mt-4 text-sm"></p>
@@ -221,7 +216,7 @@
     </div>
 
     <script>
-        // 🛡️ บล็อกคีย์ลัดและคลิกขวา
+        // 🛡️ ระบบป้องกันความปลอดภัย
         document.addEventListener('contextmenu', (e) => {
             if (e.target.tagName === 'IMG' || e.target.closest('.gallery-item') || e.target.closest('.commission-sample-item') || e.target.closest('.lightbox-image-container')) {
                 e.preventDefault();
@@ -232,9 +227,9 @@
             if ((e.ctrlKey && (e.key === 's' || e.key === 'S' || e.key === 'u' || e.key === 'U')) || e.key === 'F12') e.preventDefault();
         });
 
-        // 🎨 อัปเดตฐานข้อมูลแกลเลอรีหลัก: รวมรูปงานคัสตอมจริง (cus2-cus8) และงานคอมมิชชันจริง (cos1) เข้าไปเรียบร้อยแล้วครับพ้ม!
+        // 🎨 ฐานข้อมูลรูปภาพแกลเลอรีหลัก (ล่างสุด)
         const galleryItems = [
-            { id: 1, src: 'myman-adoptable.jpg', title: 'My Man Adoptable', category: 'adoptable' },
+            { id: 1, src: 'mymman-adoptable.jpg', title: 'My Man Adoptable', category: 'adoptable' },
             { id: 2, src: 'happy-adoptable.jpg', title: 'Happy Adoptable', category: 'adoptable' },
             { id: 3, src: 'statueman-adoptable.jpg', title: 'Statue Man Adoptable', category: 'adoptable' },
             { id: 4, src: 'goldfish-adoptable.jpg', title: 'Goldfish Adoptable', category: 'adoptable' },
@@ -243,25 +238,29 @@
             { id: 7, src: 'groom-adoptable.jpg', title: 'Groom Adoptable', category: 'adoptable' },
             { id: 8, src: 'talephoneman-adoptable.jpg', title: 'Telephone Man Adoptable', category: 'adoptable' },
             { id: 9, src: 'mrblue-adoptable.jpg', title: 'Mr. Blue Adoptable', category: 'adoptable' },
-            { id: 10, src: 'cus1.jpg', title: 'Custom Design 1', category: 'custom' },
-            { id: 11, src: 'cus2.jpg', title: 'Custom Design 2', category: 'custom' },
-            { id: 12, src: 'cus3.jpg', title: 'Custom Design 3', category: 'custom' },
-            { id: 13, src: 'cus4.jpg', title: 'Custom Design 4', category: 'custom' },
-            { id: 14, src: 'cus5.jpg', title: 'Custom Design 5', category: 'custom' },
-            { id: 15, src: 'cus6.jpg', title: 'Custom Design 6', category: 'custom' },
-            { id: 16, src: 'cus7.jpg', title: 'Custom Design 7', category: 'custom' },
-            { id: 17, src: 'cus8.jpg', title: 'Custom Design 8', category: 'custom' },
-            { id: 18, src: 'one-character.jpg', title: 'One Character Detail', category: 'commission' },
-            { id: 19, src: 'two-character.jpg', title: 'Two Character Detail', category: 'commission' }
+            { id: 10, src: 'cus2.jpg', title: 'Custom Design 2', category: 'custom' },
+            { id: 11, src: 'cus3.jpg', title: 'Custom Design 3', category: 'custom' },
+            { id: 12, src: 'cus4.jpg', title: 'Custom Design 4', category: 'custom' },
+            { id: 13, src: 'cus5.jpg', title: 'Custom Design 5', category: 'custom' },
+            { id: 14, src: 'cus6.jpg', title: 'Custom Design 6', category: 'custom' },
+            { id: 15, src: 'cus7.jpg', title: 'Custom Design 7', category: 'custom' },
+            { id: 16, src: 'cus8.jpg', title: 'Custom Design 8', category: 'custom' },
+            { id: 17, src: 'cos1.jpg', title: 'Commission Work 1', category: 'commission' },
+            { id: 18, src: 'csm1.jpg', title: 'One Character Sample 1', category: 'commission' },
+            { id: 19, src: 'csm2.jpg', title: 'One Character Sample 2', category: 'commission' },
+            { id: 20, src: 'csm3.jpg', title: 'One Character Sample 3', category: 'commission' },
+            { id: 21, src: 'csm4.jpg', title: 'One Character Sample 4', category: 'commission' },
+            { id: 22, src: 'csm5.jpg', title: 'One Character Sample 5', category: 'commission' }
         ];
 
-        // เรทตัวอย่างงานคอมมิชชันด้านบน
+        // 🛠️ อัปเดตส่วนตัวอย่างคอมมิชชัน (บน): เปลี่ยนเป็น One Character ปก csm1 และใส่ตัวอย่าง csm1-csm5 ครบชุด!
         const commissionSamples = [
-            { id: 1, src: 'one-character.jpg', title: 'One Character' },
-            { id: 2, src: 'two-character.jpg', title: 'Two Character' },
-            { id: 4, src: 'cos1.jpg', title: 'Character Design' },
-            { id: 5, src: 'https://picsum.photos/seed/comm5/400/400', title: 'Scene Illustration' },
-            { id: 6, src: 'https://picsum.photos/seed/comm6/400/400', title: 'Chibi Commission' }
+            { id: 1, src: 'csm1.jpg', title: 'One Character (Watermarked)' },
+            { id: 2, src: 'csm2.jpg', title: 'One Character Sample 2' },
+            { id: 3, src: 'csm3.jpg', title: 'One Character Sample 3' },
+            { id: 4, src: 'csm4.jpg', title: 'One Character Sample 4' },
+            { id: 5, src: 'csm5.jpg', title: 'One Character Sample 5' },
+            { id: 6, src: 'cos1.jpg', title: 'Two Characters / Complex Sample' }
         ];
 
         let currentFilter = 'all'; let currentIndex = 0; let filteredItems = galleryItems; let currentLightboxSource = 'gallery'; 
