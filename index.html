@@ -89,6 +89,22 @@
             from { transform: scale(0.9); opacity: 0; }
             to { transform: scale(1); opacity: 1; }
         }
+
+        /* 🤫 ไม้ตายลับ: ถ้ามีการกด Ctrl + S หรือสั่ง Print หน้าเว็บ ให้ซ่อนรูปภาพทั้งหมดทันที */
+@media print {
+    img, .gallery-item, .commission-sample-item, [class*="bg-charcoal"] {
+        display: none !important; /* สั่งหายตัว */
+    }
+    body::before {
+        content: "ไม่อนุญาตให้บันทึกภาพผลงานนะคะ! 🎨✨";
+        color: #000;
+        font-size: 24px;
+        font-weight: bold;
+        text-align: center;
+        display: block;
+        margin-top: 50px;
+    }
+}
     </style>
 </head>
 <body class="bg-charcoal-900 text-white font-sans antialiased">
