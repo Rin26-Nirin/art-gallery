@@ -40,7 +40,7 @@
             pointer-events: none !important;
         }
 
-        a, button, input, textarea, select, .gallery-item, .commission-sample-item, #lightbox-close, #lightbox-prev, #lightbox-next, #lightbox-swipe-area {
+        a, button, input, textarea, select, .gallery-item, #lightbox-close, #lightbox-prev, #lightbox-next, #lightbox-swipe-area {
             pointer-events: auto !important;
         }
 
@@ -137,9 +137,9 @@
         <div class="max-w-6xl mx-auto">
             <div class="text-center mb-12">
                 <h2 class="text-3xl sm:text-4xl font-bold mb-4">Commissions</h2>
-                <p class="text-white/50 max-w-xl mx-auto">View my pricing and commission details below. Browse through examples of my finished work!</p>
+                <p class="text-white/50 max-w-xl mx-auto">View my pricing and commission details below. Browse through examples of my finished work in the gallery section below!</p>
             </div>
-            <div class="mb-16">
+            <div class="mb-4">
                 <div class="relative bg-charcoal-800 rounded-2xl border-2 border-dashed border-charcoal-600 hover:border-purple-500/50 transition-colors duration-300 overflow-hidden select-none">
                     <div class="aspect-[21/9] sm:aspect-[16/6] lg:aspect-[21/7] flex flex-col items-center justify-center p-8 text-center relative">
                         <div class="absolute inset-0 flex flex-col items-center justify-center text-white/20 p-4 z-10 pointer-events-none">
@@ -151,12 +151,6 @@
                         <div class="absolute inset-0 z-20 bg-transparent"></div>
                     </div>
                 </div>
-            </div>
-            <div>
-                <div class="flex items-center justify-between mb-8">
-                    <h3 class="text-xl sm:text-2xl font-semibold">Past Commission Examples</h3>
-                </div>
-                <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4" id="commission-samples-grid"></div>
             </div>
         </div>
     </section>
@@ -183,6 +177,7 @@
             <p class="text-white/50 mb-10 max-w-xl mx-auto leading-relaxed">
                 For commission inquiries or business deals, please reach out to me via my Facebook page for the most direct and fastest communication.
             </p>
+            
             <div class="flex justify-center">
                 <a href="https://www.facebook.com/yourpagename" target="_blank" 
                    class="inline-flex items-center gap-6 px-10 py-6 bg-[#1877F2] hover:bg-[#166fe5] rounded-2xl shadow-xl shadow-blue-500/10 transition-all duration-300 group transform hover:-translate-y-1">
@@ -206,7 +201,7 @@
     </footer>
 
     <div id="lightbox" class="fixed inset-0 z-50 hidden items-center justify-center bg-black/95 p-4 select-none">
-        <button id="lightbox-close" class="absolute top-4 right-4 p-2 text-white/70 hover:text-white transition-colors z-30"><svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg></button>
+        <button id="lightbox-close" class="absolute top-4 right-4 p-2 text-white/70 hover:text-white transition-colors z-10"><svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg></button>
         
         <div id="lightbox-swipe-area" class="z-20"></div>
 
@@ -222,7 +217,7 @@
     <script>
         // 🛡️ บล็อกคีย์ลัดและคลิกขวา
         document.addEventListener('contextmenu', (e) => {
-            if (e.target.tagName === 'IMG' || e.target.closest('.gallery-item') || e.target.closest('.commission-sample-item') || e.target.closest('.lightbox-image-container')) {
+            if (e.target.tagName === 'IMG' || e.target.closest('.gallery-item') || e.target.closest('.lightbox-image-container')) {
                 e.preventDefault();
                 alert('ภาพผลงานมีลิขสิทธิ์ ไม่อนุญาตให้บันทึกภาพนะคะคุณลูกค้า 🎨✨');
             }
@@ -231,9 +226,9 @@
             if ((e.ctrlKey && (e.key === 's' || e.key === 'S' || e.key === 'u' || e.key === 'U')) || e.key === 'F12') e.preventDefault();
         });
 
-        // 🎨 ฐานข้อมูลรูปภาพแกลเลอรีหลัก (ล่างสุด) - ตัวแปรคัดกรองรูปภาพ
+        // 🎨 ฐานข้อมูลรูปภาพแกลเลอรีหลัก: แก้ไขชื่อรูปจาก mymman เป็น myman เรียบร้อย! และรวมงานคอมมิชชัน csm1-csm5 ไว้ที่นี่ทั้งหมด
         const galleryItems = [
-            { id: 1, src: 'mymman-adoptable.jpg', title: 'My Man Adoptable', category: 'adoptable' },
+            { id: 1, src: 'myman-adoptable.jpg', title: 'My Man Adoptable', category: 'adoptable' },
             { id: 2, src: 'happy-adoptable.jpg', title: 'Happy Adoptable', category: 'adoptable' },
             { id: 3, src: 'statueman-adoptable.jpg', title: 'Statue Man Adoptable', category: 'adoptable' },
             { id: 4, src: 'goldfish-adoptable.jpg', title: 'Goldfish Adoptable', category: 'adoptable' },
@@ -250,63 +245,18 @@
             { id: 15, src: 'cus7.jpg', title: 'Custom Design 7', category: 'custom' },
             { id: 16, src: 'cus8.jpg', title: 'Custom Design 8', category: 'custom' },
             { id: 17, src: 'cos1.jpg', title: 'Commission Work 1', category: 'commission' },
-            { id: 18, src: 'csm1.jpg', title: 'One Character Sample 1', category: 'commission' },
-            { id: 19, src: 'csm2.jpg', title: 'One Character Sample 2', category: 'commission' },
-            { id: 20, src: 'csm3.jpg', title: 'One Character Sample 3', category: 'commission' },
-            { id: 21, src: 'csm4.jpg', title: 'One Character Sample 4', category: 'commission' },
-            { id: 22, src: 'csm5.jpg', title: 'One Character Sample 5', category: 'commission' }
-        ];
-
-        // 🛠️ โครงสร้างสารบัญกลุ่มรูปภาพตัวจริง (ข้างในดึงออกมาสไลด์)
-        const commissionGroups = {
-            'one-character': [
-                { src: 'csm1.jpg', title: 'One Character - Sample 1' },
-                { src: 'csm2.jpg', title: 'One Character - Sample 2' },
-                { src: 'csm3.jpg', title: 'One Character - Sample 3' },
-                { src: 'csm4.jpg', title: 'One Character - Sample 4' },
-                { src: 'csm5.jpg', title: 'One Character - Sample 5' }
-            ],
-            'complex-character': [
-                { src: 'cos1.jpg', title: 'Two Characters / Complex Background' }
-            ]
-        };
-
-        // 🛠️ หน้าปกที่โชว์จริงในส่วน Past Commission แถวบนสุด (เหลือแค่ 2 ปกตามบรีฟเป๊ะ ๆ)
-        const commissionCovers = [
-            { id: 'one-character', src: 'csm1.jpg', title: 'One Character (งานเดี่ยว)' },
-            { id: 'complex-character', src: 'cos1.jpg', title: 'Multi Characters / Complex BG' }
+            { id: 18, src: 'csm1.jpg', title: 'One Character - Sample 1', category: 'commission' },
+            { id: 19, src: 'csm2.jpg', title: 'One Character - Sample 2', category: 'commission' },
+            { id: 20, src: 'csm3.jpg', title: 'One Character - Sample 3', category: 'commission' },
+            { id: 21, src: 'csm4.jpg', title: 'One Character - Sample 4', category: 'commission' },
+            { id: 22, src: 'csm5.jpg', title: 'One Character - Sample 5', category: 'commission' }
         ];
 
         let currentFilter = 'all'; let currentIndex = 0; let filteredItems = galleryItems; 
-        let currentLightboxSource = 'gallery'; let currentActiveGroup = [];
+        let currentLightboxSource = 'gallery';
         let touchstartX = 0; let touchendX = 0; const swipeThreshold = 50;
 
-        // 🛠️ พ่นหน้าปกคอมมิชชันแบบสะอาดตา
-        function renderCommissionSamples() {
-            const grid = document.getElementById('commission-samples-grid');
-            if (!grid) return;
-            grid.innerHTML = commissionCovers.map((item) => `
-                <div class="commission-sample-item cursor-pointer group" data-group-id="${item.id}">
-                    <div class="relative aspect-square overflow-hidden rounded-xl bg-charcoal-700 bg-cover bg-center" style="background-image: url('${item.src}');">
-                        <div class="w-full h-full absolute inset-0 z-10 bg-transparent"></div>
-                        <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-20">
-                            <div class="absolute bottom-0 left-0 right-0 p-3"><h3 class="text-white font-medium text-xs sm:text-sm">${item.title}</h3></div>
-                        </div>
-                    </div>
-                </div>
-            `).join('');
-            
-            document.querySelectorAll('.commission-sample-item').forEach(item => {
-                item.addEventListener('click', () => {
-                    const groupId = item.dataset.groupId;
-                    currentActiveGroup = commissionGroups[groupId];
-                    currentIndex = 0;
-                    currentLightboxSource = 'group';
-                    openLightboxForGroup(currentIndex);
-                });
-            });
-        }
-
+        // Render Gallery หลักชิ้นเดียวจบทั้งเว็บไซต์
         function renderGallery(filter = 'all') {
             const grid = document.getElementById('gallery-grid');
             filteredItems = filter === 'all' ? galleryItems : galleryItems.filter(item => item.category === filter);
@@ -337,30 +287,11 @@
         const swipeArea = document.getElementById('lightbox-swipe-area');
 
         function openLightbox(index) { const item = filteredItems[index]; showLightboxContent(item.src, item.title); }
-        function openLightboxForGroup(index) { const item = currentActiveGroup[index]; showLightboxContent(item.src, item.title); }
         function showLightboxContent(src, title) { lightboxImage.src = src; lightboxCaption.textContent = title; lightbox.classList.remove('hidden'); lightbox.classList.add('flex'); document.body.style.overflow = 'hidden'; resetSwipeVariables(); }
         
         function closeLightbox() { lightbox.classList.add('hidden'); lightbox.classList.remove('flex'); document.body.style.overflow = ''; }
-        
-        function nextImage() {
-            if (currentLightboxSource === 'group') {
-                currentIndex = (currentIndex + 1) % currentActiveGroup.length;
-                openLightboxForGroup(currentIndex);
-            } else {
-                currentIndex = (currentIndex + 1) % filteredItems.length;
-                openLightbox(currentIndex);
-            }
-        }
-
-        function prevImage() {
-            if (currentLightboxSource === 'group') {
-                currentIndex = (currentIndex - 1 + currentActiveGroup.length) % currentActiveGroup.length;
-                openLightboxForGroup(currentIndex);
-            } else {
-                currentIndex = (currentIndex - 1 + filteredItems.length) % filteredItems.length;
-                openLightbox(currentIndex);
-            }
-        }
+        function nextImage() { currentIndex = (currentIndex + 1) % filteredItems.length; openLightbox(currentIndex); }
+        function prevImage() { currentIndex = (currentIndex - 1 + filteredItems.length) % filteredItems.length; openLightbox(currentIndex); }
 
         function resetSwipeVariables() { touchstartX = 0; touchendX = 0; }
         function handleSwipeGesture() {
@@ -391,7 +322,6 @@
         window.addEventListener('scroll', () => { if (window.pageYOffset > 100) document.querySelector('nav').classList.add('shadow-lg'); else document.querySelector('nav').classList.remove('shadow-lg'); });
 
         renderGallery();
-        renderCommissionSamples();
     </script>
 </body>
 </html>
