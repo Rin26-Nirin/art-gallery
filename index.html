@@ -28,7 +28,7 @@
         }
     </script>
     <style>
-        /* 🛡️ ป้องกันการเซฟรูปภาพทุกอุปกรณ์ (iOS, Android, PC) */
+        /* 🛡️ 1. เกราะบล็อกในระบบ (CSS) ป้องกันการเซฟรูปภาพทุกอุปกรณ์ */
         img {
             -webkit-touch-callout: none !important;    /* บล็อกเมนูกดค้างบน iPhone / iPad */
             -webkit-user-select: none !important;      /* บล็อกการไฮไลท์รูปบน Safari */
@@ -39,8 +39,8 @@
             pointer-events: none !important;           /* ล็อกไม่ให้จิ้ม ลาก หรือคลิกขวาที่ตัวรูปภาพได้ตรง ๆ */
         }
 
-        /* เปิดให้ปุ่ม ลิงก์ และฟอร์มติดต่อกลับมาคลิกและพิมพ์ได้ปกติ */
-        a, button, input, textarea, select, .gallery-item, .commission-sample-item {
+        /* เปิดให้ปุ่ม ลิงก์ และกล่องผลงานกลับมาจิ้มเปิดดูป็อปอัปได้ปกติ */
+        a, button, input, textarea, select, .gallery-item, .commission-sample-item, #lightbox-close, #lightbox-prev, #lightbox-next {
             pointer-events: auto !important;
         }
 
@@ -82,7 +82,7 @@
             from { opacity: 0; }
             to { opacity: 1; }
         }
-        .lightbox-image {
+        .lightbox-image-container {
             animation: scaleIn 0.3s ease-out;
         }
         @keyframes scaleIn {
@@ -172,9 +172,9 @@
             </div>
             
             <div class="mb-16">
-                <div class="relative bg-charcoal-800 rounded-2xl border-2 border-dashed border-charcoal-600 hover:border-purple-500/50 transition-colors duration-300 overflow-hidden select-none pointer-events-none">
+                <div class="relative bg-charcoal-800 rounded-2xl border-2 border-dashed border-charcoal-600 hover:border-purple-500/50 transition-colors duration-300 overflow-hidden select-none">
                     <div class="aspect-[21/9] sm:aspect-[16/6] lg:aspect-[21/7] flex flex-col items-center justify-center p-8 text-center relative">
-                        <div class="absolute inset-0 flex flex-col items-center justify-center text-white/20 p-4 z-10">
+                        <div class="absolute inset-0 flex flex-col items-center justify-center text-white/20 p-4 z-10 pointer-events-none">
                             <svg class="w-20 h-20 sm:w-24 sm:h-24 mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
                             </svg>
@@ -182,6 +182,7 @@
                             <p class="text-sm sm:text-base text-white/30 max-w-md">Replace this placeholder with your unified pricing banner image</p>
                         </div>
                         <img src="https://picsum.photos/seed/pricechart/1200/400" alt="Commission Pricing Chart" class="absolute inset-0 w-full h-full object-cover opacity-30 hover:opacity-50 transition-opacity duration-300">
+                        <div class="absolute inset-0 z-20 bg-transparent"></div>
                     </div>
                 </div>
                 <p class="text-center text-white/40 text-sm mt-4">Protected Artwork | Recommended size: 1920x640px or similar wide banner format</p>
@@ -316,7 +317,7 @@
                         <a href="#" class="flex items-center gap-4 p-4 bg-charcoal-700 rounded-xl hover:bg-charcoal-600 transition-colors duration-300 group">
                             <div class="w-12 h-12 bg-purple-500/20 rounded-lg flex items-center justify-center">
                                 <svg class="w-6 h-6 text-purple-400" fill="currentColor" viewBox="0 0 24 24">
-                                    <path d="M11.64 5.93h.08c.13 0 1.04.02 2 .11.02 0 .04 0 .06.01.02 0 .04.01.06.01.02.01.04.01.06.02.02.01.04.01.06.02.02.01.04.01.06.02.19.06.36.14.52.23.02.01.04.03.06.04.01.01.03.02.04.03l.05.04c.01.01.03.02.04.04.02.01.03.03.05.04.01.01.02.02.03.03l.05.05.03.03c.02.02.03.04.05.06l.02.03c.02.02.03.05.05.07l.02.03c.01.02.03.05.04.07l.02.03c.01.03.03.05.04.08l.01.03c.01.03.02.05.04.08l.01.03c.01.03.02.06.03.09l.01.03c.01.03.02.06.03.09l.01.03c.01.03.01.06.02.09 0 .01.01.03.01.04.01.03.01.06.02.09 0 .02.01.03.01.05 0 .03.01.06.01.09 0 .02 0 .03.01.05 0 .03.01.06.01.1v.05c0 .03 0 .07.01.1v.06c0 .04 0 .07-.01.11v.06c0 .04 0 .07-.01.11 0 .02 0 .04-.01.06 z"/>
+                                    <path d="M11.64 5.93h.08c.13 0 1.04.02 2 .11.02 0 .04 0 .06.01.02 0 .04.01.06.01.02.01.04.01.06.02.02.01.04.01.06.02.02.01.04.01.06.02.19.06.36.14.52.23.02.01.04.03.06.04.01.01.03.02.04.03l.05.04c.01.01.03.02.04.04.02.01.03.03.05.04.01.01.02.02.03.03l.05.05.03.03c.02.02.03.04.05.06l.02.03c.02.02.03.05.05.07l.02.03c.01.02.03.05.04.07l.02.03c.01.03.03.05.04.08l.01.03c.01.03.02.05.04.08l.01.03c.01.03.02.06.03.09l.01.03c.01.03.02.06.03.09l.01.03c.01.03.01.06.02.09 0 .01.01.03.01.04.01.03.01.06.02.09 0 .02.01.03.01.05 0 .03.01.06.01.09 0 .02 0 .03.01.05 0 .03.01.06.01.1v.05c0 .03 0 .07.01.1v.06c0 .04 0 .07-.01.11v.06c0 .04 0 .07-.01.11 0 .02 0 .04-.01.06 0 .04-.01.07-.01.11 0 .02-.01.04-.01.06-.01.04-.01.07-.02.11 0 .02-.01.04-.01.06-.01.04-.02.08-.03.11-.01.02-.01.04-.02.06-.01.04-.02.08-.03.11-.01.02-.01.04-.02.06-.01.04-.03.08-.04.11-.01.02-.02.04-.03.06l-.05.11c-.01.02-.02.04-.03.06-.02.04-.04.07-.06.11-.01.02-.02.04-.04.06-.02.04-.05.07-.07.11-.01.02-.03.03-.04.05-.03.04-.06.07-.09.11-.01.02-.03.03-.04.05-.03.03-.07.07-.1.1-.02.02-.03.03-.05.05-.04.03-.07.06-.11.09-.02.01-.03.03-.05.04-.04.03-.08.06-.13.09l-.05.03c-.05.03-.1.06-.15.08l-.05.03c-.05.03-.11.05-.17.08l-.05.02c-.06.03-.12.05-.18.07l-.05.02c-.06.02-.13.04-.2.06l-.04.01c-.07.02-.14.04-.21.05l-.04.01c-.07.02-.15.03-.23.04h-.04c-.08.01-.16.02-.24.03h-.04c-.09.01-.17.01-.26.02H12c-.09 0-.18-.01-.27-.02h-.04c-.08-.01-.16-.02-.25-.03h-.04c-.08-.01-.16-.03-.23-.04l-.04-.01c-.08-.02-.15-.03-.22-.05l-.04-.01c-.07-.02-.14-.04-.2-.06l-.05-.02c-.06-.02-.13-.04-.19-.07l-.05-.02c-.06-.03-.12-.05-.17-.08l-.05-.03c-.05-.03-.1-.06-.15-.08l-.05-.03c-.05-.03-.09-.06-.13-.09-.02-.01-.04-.03-.05-.04-.04-.03-.08-.06-.11-.09-.02-.02-.04-.03-.05-.05-.04-.03-.07-.07-.1-.1-.02-.02-.03-.03-.05-.05-.03-.04-.06-.07-.09-.11-.01-.02-.03-.03-.04-.05-.03-.04-.05-.07-.08-.11-.01-.02-.03-.04-.04-.06-.02-.04-.05-.07-.07-.11-.01-.02-.03-.04-.04-.06-.02-.04-.04-.07-.06-.11-.01-.02-.02-.04-.03-.06l-.05-.11c-.01-.02-.02-.04-.03-.06-.02-.04-.03-.08-.04-.11-.01-.02-.01-.04-.02-.06-.01-.04-.02-.08-.03-.11-.01-.02-.01-.04-.02-.06-.01-.04-.02-.08-.03-.12 0-.02-.01-.04-.01-.06-.01-.04-.01-.08-.02-.12 0-.02-.01-.04-.01-.06 0-.04-.01-.08-.01-.12 0-.02-.01-.04-.01-.06 0-.04 0-.08-.01-.12v-.06c0-.04 0-.08.01-.12v-.06c0-.04.01-.08.01-.12 0-.02.01-.04.01-.06.01-.04.01-.08.02-.12 0-.02.01-.04.01-.06.01-.04.02-.08.03-.12.01-.02.01-.04.02-.06.01-.04.02-.08.04-.12l.03-.06c.02-.04.03-.08.05-.12.01-.02.02-.04.03-.06.02-.04.04-.08.07-.12.01-.02.02-.04.04-.06.03-.04.05-.08.08-.12.02-.02.03-.04.05-.06.03-.04.06-.07.1-.11.02-.02.04-.04.06-.05.04-.04.08-.07.12-.1.02-.02.04-.03.06-.05.05-.03.09-.07.14-.1l.06-.04c.05-.03.11-.06.17-.09l.05-.03c.06-.03.13-.06.2-.09.02-.01.04-.02.06-.02.07-.03.15-.05.23-.08.02-.01.04-.01.07-.02.08-.02.16-.04.24-.06.02-.01.05-.01.07-.02.08-.02.17-.03.26-.05.03 0 .05-.01.08-.01.09-.01.18-.02.28-.03.03 0 .06 0 .09-.01.1-.01.21-.01.32-.01zM12 0C5.37 0 0 5.37 0 12s5.37 12 12 12 12-5.37 12-12S18.63 0 12 0zm0 22C6.48 22 2 17.52 2 12S6.48 2 12 2s10 4.48 10 10-4.48 10-10 10z"/>
                                 </svg>
                             </div>
                             <div>
@@ -353,10 +354,11 @@
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
             </svg>
         </button>
-        <div class="max-w-5xl max-h-[90vh] relative">
-            <img id="lightbox-image" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" alt="" class="max-w-full max-h-[85vh] object-contain rounded-lg relative z-10">
-            <div id="lightbox-bg-layer" class="absolute inset-0 bg-contain bg-no-repeat bg-center z-0"></div>
-            <p id="lightbox-caption" class="text-center text-white/70 mt-4 text-sm relative z-20"></p>
+        
+        <div class="max-w-5xl max-h-[90vh] relative lightbox-image-container flex items-center justify-center">
+            <img id="lightbox-image" src="" alt="" class="max-w-full max-h-[85vh] object-contain rounded-lg relative z-0">
+            <div class="absolute inset-0 z-10 bg-transparent select-none"></div>
+            <p id="lightbox-caption" class="absolute bottom-[-40px] left-0 right-0 text-center text-white/70 text-sm z-20"></p>
         </div>
     </div>
 
@@ -372,7 +374,7 @@
     <script>
         // 🛡️ บล็อกคลิกขวา บล็อกคีย์ลัดปกติบนเดสก์ท็อป
         document.addEventListener('contextmenu', (e) => {
-            if (e.target.tagName === 'IMG' || e.target.closest('.gallery-item') || e.target.closest('.commission-sample-item')) {
+            if (e.target.tagName === 'IMG' || e.target.closest('.gallery-item') || e.target.closest('.commission-sample-item') || e.target.closest('.lightbox-image-container')) {
                 e.preventDefault();
                 alert('ภาพผลงานมีลิขสิทธิ์ ไม่อนุญาตให้บันทึกภาพนะคะคุณลูกค้า 🎨✨');
             }
@@ -389,18 +391,18 @@
 
         // Gallery Data - เปลี่ยนชื่อ/ลิงก์ให้ตรงกับที่อัปโหลดขึ้น GitHub หรือ Imgur ได้เลย
         const galleryItems = [
-            { id: 1, src: 'https://picsum.photos/seed/art1/400/600', title: 'Mystic Forest Guardian', category: 'commission', aspect: 'tall' },
-            { id: 2, src: 'https://picsum.photos/seed/art2/500/400', title: 'Cyber Punk Character', category: 'adoptable', aspect: 'wide' },
-            { id: 3, src: 'https://picsum.photos/seed/art3/400/500', title: 'Custom OC Design', category: 'custom', aspect: 'tall' },
-            { id: 4, src: 'https://picsum.photos/seed/art4/450/450', title: 'Fantasy Portrait', category: 'commission', aspect: 'square' },
-            { id: 5, src: 'https://picsum.photos/seed/art5/400/650', title: 'Dragon Rider', category: 'commission', aspect: 'tall' },
-            { id: 6, src: 'https://picsum.photos/seed/art6/500/350', title: 'Neon Dreams Adoptable', category: 'adoptable', aspect: 'wide' },
-            { id: 7, src: 'https://picsum.photos/seed/art7/400/400', title: 'Custom Character Sheet', category: 'custom', aspect: 'square' },
-            { id: 8, src: 'https://picsum.photos/seed/art8/380/580', title: 'Elven Princess', category: 'commission', aspect: 'tall' },
-            { id: 9, src: 'https://picsum.photos/seed/art9/480/380', title: 'Chibi Collection', category: 'adoptable', aspect: 'wide' },
-            { id: 10, src: 'https://picsum.photos/seed/art10/400/550', title: 'Custom Character Concept', category: 'custom', aspect: 'tall' },
-            { id: 11, src: 'https://picsum.photos/seed/art11/420/420', title: 'Magical Creature', category: 'adoptable', aspect: 'square' },
-            { id: 12, src: 'https://picsum.photos/seed/art12/400/620', title: 'Commission: OC Portrait', category: 'commission', aspect: 'tall' },
+            { id: 1, src: 'https://picsum.photos/seed/art1/400/600', title: 'Mystic Forest Guardian', category: 'commission' },
+            { id: 2, src: 'https://picsum.photos/seed/art2/500/400', title: 'Cyber Punk Character', category: 'adoptable' },
+            { id: 3, src: 'https://picsum.photos/seed/art3/400/500', title: 'Custom OC Design', category: 'custom' },
+            { id: 4, src: 'https://picsum.photos/seed/art4/450/450', title: 'Fantasy Portrait', category: 'commission' },
+            { id: 5, src: 'https://picsum.photos/seed/art5/400/650', title: 'Dragon Rider', category: 'commission' },
+            { id: 6, src: 'https://picsum.photos/seed/art6/500/350', title: 'Neon Dreams Adoptable', category: 'adoptable' },
+            { id: 7, src: 'https://picsum.photos/seed/art7/400/400', title: 'Custom Character Sheet', category: 'custom' },
+            { id: 8, src: 'https://picsum.photos/seed/art8/380/580', title: 'Elven Princess', category: 'commission' },
+            { id: 9, src: 'https://picsum.photos/seed/art9/480/380', title: 'Chibi Collection', category: 'adoptable' },
+            { id: 10, src: 'https://picsum.photos/seed/art10/400/550', title: 'Custom Character Concept', category: 'custom' },
+            { id: 11, src: 'https://picsum.photos/seed/art11/420/420', title: 'Magical Creature', category: 'adoptable' },
+            { id: 12, src: 'https://picsum.photos/seed/art12/400/620', title: 'Commission: OC Portrait', category: 'commission' },
         ];
 
         // Commission Samples Data - ใส่ชื่อไฟล์รูปที่ต้องการแสดงที่นี่ได้เลยครับ
@@ -428,7 +430,7 @@
             grid.innerHTML = commissionSamples.map((item, index) => `
                 <div class="commission-sample-item cursor-pointer group" data-index="${index}">
                     <div class="relative aspect-square overflow-hidden rounded-xl bg-charcoal-700 bg-cover bg-center" style="background-image: url('${item.src}');">
-                        <img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" class="w-full h-full object-cover absolute inset-0 z-10">
+                        <div class="w-full h-full absolute inset-0 z-10 bg-transparent"></div>
                         <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-20">
                             <div class="absolute bottom-0 left-0 right-0 p-3">
                                 <h3 class="text-white font-medium text-xs sm:text-sm">${item.title}</h3>
@@ -457,7 +459,7 @@
                 return `
                     <div class="masonry-item gallery-item cursor-pointer group" data-index="${index}">
                         <div class="relative overflow-hidden rounded-xl bg-charcoal-700 bg-cover bg-center ${heightClass}" style="background-image: url('${item.src}');">
-                            <img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" class="w-full h-full object-cover absolute inset-0 z-10">
+                            <div class="w-full h-full absolute inset-0 z-10 bg-transparent"></div>
                             <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-20">
                                 <div class="absolute bottom-0 left-0 right-0 p-4">
                                     <h3 class="text-white font-medium text-sm">${item.title}</h3>
@@ -495,13 +497,12 @@
         // Lightbox Control
         const lightbox = document.getElementById('lightbox');
         const lightboxImage = document.getElementById('lightbox-image');
-        const lightboxBgLayer = document.getElementById('lightbox-bg-layer');
         const lightboxCaption = document.getElementById('lightbox-caption');
 
-        // 🛡️ แก้ไขให้ดึงภาพจริงมาป้อนเข้า Background Layer แต่ตัวแท็กครอบด้านบนยังคงเป็นแผ่นใส
+        // 🛡️ คืนชีพรูปใหญ่เต็มตา โหลด URL ตรงเข้าสู่แท็กโดยไม่มีอะไรหดตัว แต่ปิดการมีปฏิกิริยา Pointer บล็อกบันทึกภาพ
         function openLightbox(index) {
             const item = filteredItems[index];
-            lightboxBgLayer.style.backgroundImage = `url('${item.src}')`;
+            lightboxImage.src = item.src;
             lightboxCaption.textContent = item.title;
             lightbox.classList.remove('hidden');
             lightbox.classList.add('flex');
@@ -510,7 +511,7 @@
 
         function openLightboxForCommission(index) {
             const item = commissionSamples[index];
-            lightboxBgLayer.style.backgroundImage = `url('${item.src}')`;
+            lightboxImage.src = item.src;
             lightboxCaption.textContent = item.title;
             lightbox.classList.remove('hidden');
             lightbox.classList.add('flex');
@@ -548,7 +549,7 @@
         document.getElementById('lightbox-prev').addEventListener('click', prevImage);
 
         lightbox.addEventListener('click', (e) => {
-            if (e.target === lightbox) closeLightbox();
+            if (e.target === lightbox || e.target.classList.contains('bg-transparent')) closeLightbox();
         });
 
         // Keyboard navigation
