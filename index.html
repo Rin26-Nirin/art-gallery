@@ -173,12 +173,12 @@
             <div class="flex justify-center">
                 <a href="https://www.facebook.com/yourpagename" target="_blank" 
                    class="inline-flex items-center gap-6 px-10 py-6 bg-[#1877F2] hover:bg-[#166fe5] rounded-2xl shadow-xl shadow-blue-500/10 transition-all duration-300 group transform hover:-translate-y-1">
-                    <div class="w-16 h-16 bg-white/10 rounded-xl flex items-center justify-center shrink-0">
-                        <i class="fa-brands fa-facebook text-4xl text-white"></i>
+                    <div class="w-12 h-12 bg-white/10 rounded-xl flex items-center justify-center shrink-0">
+                        <i class="fa-brands fa-facebook text-3xl text-white"></i>
                     </div>
                     <div class="text-left">
                         <span class="block text-white/80 text-sm font-medium uppercase tracking-wider mb-1">Contact via</span>
-                        <span class="text-2xl font-bold text-white block">Facebook Messenger</span>
+                        <span class="text-xl font-bold text-white block">Facebook Messenger</span>
                     </div>
                 </a>
             </div>
@@ -204,7 +204,7 @@
     </div>
 
     <script>
-        // 🛡️ บล็อกคีย์ลัดและคลิกขวา
+        // 🛡️ บล็อกคีย์ลัดและคลิกขวาเดสก์ท็อป
         document.addEventListener('contextmenu', (e) => {
             if (e.target.tagName === 'IMG' || e.target.closest('.gallery-item') || e.target.closest('.commission-sample-item') || e.target.closest('.lightbox-image-container')) {
                 e.preventDefault();
@@ -215,31 +215,30 @@
             if ((e.ctrlKey && (e.key === 's' || e.key === 'S' || e.key === 'u' || e.key === 'U')) || e.key === 'F12') e.preventDefault();
         });
 
-        // 🎨 ข้อมูลรูปภาพ (รินเปลี่ยนชื่อไฟล์ตรงนี้ได้เลย)
+        // 🎨 ฐานข้อมูลรูปภาพหลัก (แกลเลอรี) มีรูปภาพงานอดอปจริงทั้ง 9 รูปที่รินเตรียมไว้เรียบร้อยครับ!
         const galleryItems = [
-            { id: 1, src: 'https://picsum.photos/seed/art1/400/600', title: 'Mystic Forest Guardian', category: 'commission' },
-            { id: 2, src: 'https://picsum.photos/seed/art2/500/400', title: 'Cyber Punk Character', category: 'adoptable' },
-            { id: 3, src: 'https://picsum.photos/seed/art3/400/500', title: 'Custom OC Design', category: 'custom' },
-            { id: 4, src: 'https://picsum.photos/seed/art4/450/450', title: 'Fantasy Portrait', category: 'commission' },
-            { id: 5, src: 'https://picsum.photos/seed/art5/400/650', title: 'Dragon Rider', category: 'commission' },
-            { id: 6, src: 'https://picsum.photos/seed/art6/500/350', title: 'Neon Dreams Adoptable', category: 'adoptable' },
-            { id: 7, src: 'https://picsum.photos/seed/art7/400/400', title: 'Custom Character Sheet', category: 'custom' },
-            { id: 8, src: 'https://picsum.photos/seed/art8/380/580', title: 'Elven Princess', category: 'commission' },
-            { id: 9, src: 'https://picsum.photos/seed/art9/480/380', title: 'Chibi Collection', category: 'adoptable' },
-            { id: 10, src: 'https://picsum.photos/seed/art10/400/550', title: 'Custom Character Concept', category: 'custom' },
-            { id: 11, src: 'https://picsum.photos/seed/art11/420/420', title: 'Magical Creature', category: 'adoptable' },
-            { id: 12, src: 'https://picsum.photos/seed/art12/400/620', title: 'Commission: OC Portrait', category: 'commission' },
+            { id: 1, src: 'mymman-adoptable.jpg', title: 'My Man Adoptable', category: 'adoptable' },
+            { id: 2, src: 'happy-adoptable.jpg', title: 'Happy Adoptable', category: 'adoptable' },
+            { id: 3, src: 'statueman-adoptable.jpg', title: 'Statue Man Adoptable', category: 'adoptable' },
+            { id: 4, src: 'goldfish-adoptable.jpg', title: 'Goldfish Adoptable', category: 'adoptable' },
+            { id: 5, src: 'nut-adoptable.jpg', title: 'Nut Adoptable', category: 'adoptable' },
+            { id: 6, src: 'snowotter-adoptable.jpg', title: 'Snow Otter Adoptable', category: 'adoptable' },
+            { id: 7, src: 'groom-adoptable.jpg', title: 'Groom Adoptable', category: 'adoptable' },
+            { id: 8, src: 'talephoneman-adoptable.jpg', title: 'Telephone Man Adoptable', category: 'adoptable' },
+            { id: 9, src: 'mrblue-adoptable.jpg', title: 'Mr. Blue Adoptable', category: 'adoptable' },
+            { id: 10, src: 'https://picsum.photos/seed/art4/450/450', title: 'Fantasy Portrait', category: 'commission' },
+            { id: 11, src: 'https://picsum.photos/seed/art5/400/650', title: 'Dragon Rider', category: 'commission' },
+            { id: 12, src: 'https://picsum.photos/seed/art3/400/500', title: 'Custom OC Design', category: 'custom' }
         ];
 
+        // ตัวอย่างงานคอมมิชชันด้านบน (รินเปลี่ยนชื่อไฟล์เพิ่มได้ตามสะดวกเลยนะ)
         const commissionSamples = [
             { id: 1, src: 'one-character.jpg', title: 'One Character' },
             { id: 2, src: 'two-character.jpg', title: 'Two Character' },
             { id: 3, src: 'https://picsum.photos/seed/comm3/400/400', title: 'Couple Art' },
             { id: 4, src: 'https://picsum.photos/seed/comm4/400/400', title: 'Character Design' },
             { id: 5, src: 'https://picsum.photos/seed/comm5/400/400', title: 'Scene Illustration' },
-            { id: 6, src: 'https://picsum.photos/seed/comm6/400/400', title: 'Chibi Commission' },
-            { id: 7, src: 'https://picsum.photos/seed/comm7/400/400', title: 'Reference Sheet' },
-            { id: 8, src: 'https://picsum.photos/seed/comm8/400/400', title: 'Icon/Avatar' },
+            { id: 6, src: 'https://picsum.photos/seed/comm6/400/400', title: 'Chibi Commission' }
         ];
 
         let currentFilter = 'all'; let currentIndex = 0; let filteredItems = galleryItems; let currentLightboxSource = 'gallery'; 
