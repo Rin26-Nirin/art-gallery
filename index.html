@@ -232,9 +232,9 @@
             if ((e.ctrlKey && (e.key === 's' || e.key === 'S' || e.key === 'u' || e.key === 'U')) || e.key === 'F12') e.preventDefault();
         });
 
-        // 🎨 ฐานข้อมูลรูปภาพแกลเลอรี
+        // 🎨 อัปเดตฐานข้อมูลแกลเลอรีหลัก: รวมรูปงานคัสตอมจริง (cus2-cus8) และงานคอมมิชชันจริง (cos1) เข้าไปเรียบร้อยแล้วครับพ้ม!
         const galleryItems = [
-            { id: 1, src: 'myman-adoptable.jpg', title: 'My Man Adoptable', category: 'adoptable' },
+            { id: 1, src: 'mymman-adoptable.jpg', title: 'My Man Adoptable', category: 'adoptable' },
             { id: 2, src: 'happy-adoptable.jpg', title: 'Happy Adoptable', category: 'adoptable' },
             { id: 3, src: 'statueman-adoptable.jpg', title: 'Statue Man Adoptable', category: 'adoptable' },
             { id: 4, src: 'goldfish-adoptable.jpg', title: 'Goldfish Adoptable', category: 'adoptable' },
@@ -243,15 +243,23 @@
             { id: 7, src: 'groom-adoptable.jpg', title: 'Groom Adoptable', category: 'adoptable' },
             { id: 8, src: 'talephoneman-adoptable.jpg', title: 'Telephone Man Adoptable', category: 'adoptable' },
             { id: 9, src: 'mrblue-adoptable.jpg', title: 'Mr. Blue Adoptable', category: 'adoptable' },
-            { id: 10, src: 'https://picsum.photos/seed/art4/450/450', title: 'Fantasy Portrait', category: 'commission' },
-            { id: 11, src: 'https://picsum.photos/seed/art5/400/650', title: 'Dragon Rider', category: 'commission' },
-            { id: 12, src: 'https://picsum.photos/seed/art3/400/500', title: 'Custom OC Design', category: 'custom' }
+            { id: 10, src: 'cus2.jpg', title: 'Custom Design 2', category: 'custom' },
+            { id: 11, src: 'cus3.jpg', title: 'Custom Design 3', category: 'custom' },
+            { id: 12, src: 'cus4.jpg', title: 'Custom Design 4', category: 'custom' },
+            { id: 13, src: 'cus5.jpg', title: 'Custom Design 5', category: 'custom' },
+            { id: 14, src: 'cus6.jpg', title: 'Custom Design 6', category: 'custom' },
+            { id: 15, src: 'cus7.jpg', title: 'Custom Design 7', category: 'custom' },
+            { id: 16, src: 'cus8.jpg', title: 'Custom Design 8', category: 'custom' },
+            { id: 17, src: 'cos1.jpg', title: 'Commission Work 1', category: 'commission' },
+            { id: 18, src: 'one-character.jpg', title: 'One Character Detail', category: 'commission' },
+            { id: 19, src: 'two-character.jpg', title: 'Two Character Detail', category: 'commission' }
         ];
 
+        // เรทตัวอย่างงานคอมมิชชันด้านบน
         const commissionSamples = [
             { id: 1, src: 'one-character.jpg', title: 'One Character' },
             { id: 2, src: 'two-character.jpg', title: 'Two Character' },
-            { id: 3, src: 'https://picsum.photos/seed/comm3/400/400', title: 'Couple Art' },
+            { id: 3, src: 'cos1.jpg', title: 'Commission Sample 1' },
             { id: 4, src: 'https://picsum.photos/seed/comm4/400/400', title: 'Character Design' },
             { id: 5, src: 'https://picsum.photos/seed/comm5/400/400', title: 'Scene Illustration' },
             { id: 6, src: 'https://picsum.photos/seed/comm6/400/400', title: 'Chibi Commission' }
@@ -276,7 +284,6 @@
             document.querySelectorAll('.commission-sample-item').forEach(item => { item.addEventListener('click', () => { currentIndex = parseInt(item.dataset.index); currentLightboxSource = 'commission'; openLightboxForCommission(currentIndex); }); });
         }
 
-        // 🛠️ จุดที่แก้ไข: คืนค่าความสูง h-64 ให้กล่อง Masonry รูปภาพจริงโผล่ตัวออกมาแล้วครับ!
         function renderGallery(filter = 'all') {
             const grid = document.getElementById('gallery-grid');
             filteredItems = filter === 'all' ? galleryItems : galleryItems.filter(item => item.category === filter);
