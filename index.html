@@ -226,7 +226,7 @@
             if ((e.ctrlKey && (e.key === 's' || e.key === 'S' || e.key === 'u' || e.key === 'U')) || e.key === 'F12') e.preventDefault();
         });
 
-        // 🎨 ฐานข้อมูลรูปภาพแกลเลอรีหลัก: แก้ไขชื่อรูปจาก mymman เป็น myman เรียบร้อย! และรวมงานคอมมิชชัน csm1-csm5 ไว้ที่นี่ทั้งหมด
+        // 🎨 ฐานข้อมูลรูปภาพแกลเลอรีหลัก: ลบภาพ cos1 ออกเรียบร้อย เหลือแค่งานเดี่ยว csm1-csm5 งานคัสตอม และงานอดอปครับ
         const galleryItems = [
             { id: 1, src: 'myman-adoptable.jpg', title: 'My Man Adoptable', category: 'adoptable' },
             { id: 2, src: 'happy-adoptable.jpg', title: 'Happy Adoptable', category: 'adoptable' },
@@ -244,19 +244,17 @@
             { id: 14, src: 'cus6.jpg', title: 'Custom Design 6', category: 'custom' },
             { id: 15, src: 'cus7.jpg', title: 'Custom Design 7', category: 'custom' },
             { id: 16, src: 'cus8.jpg', title: 'Custom Design 8', category: 'custom' },
-            { id: 17, src: 'cos1.jpg', title: 'Commission Work 1', category: 'commission' },
-            { id: 18, src: 'csm1.jpg', title: 'One Character - Sample 1', category: 'commission' },
-            { id: 19, src: 'csm2.jpg', title: 'One Character - Sample 2', category: 'commission' },
-            { id: 20, src: 'csm3.jpg', title: 'One Character - Sample 3', category: 'commission' },
-            { id: 21, src: 'csm4.jpg', title: 'One Character - Sample 4', category: 'commission' },
-            { id: 22, src: 'csm5.jpg', title: 'One Character - Sample 5', category: 'commission' }
+            { id: 17, src: 'csm1.jpg', title: 'One Character - Sample 1', category: 'commission' },
+            { id: 18, src: 'csm2.jpg', title: 'One Character - Sample 2', category: 'commission' },
+            { id: 19, src: 'csm3.jpg', title: 'One Character - Sample 3', category: 'commission' },
+            { id: 20, src: 'csm4.jpg', title: 'One Character - Sample 4', category: 'commission' },
+            { id: 21, src: 'csm5.jpg', title: 'One Character - Sample 5', category: 'commission' }
         ];
 
         let currentFilter = 'all'; let currentIndex = 0; let filteredItems = galleryItems; 
         let currentLightboxSource = 'gallery';
         let touchstartX = 0; let touchendX = 0; const swipeThreshold = 50;
 
-        // Render Gallery หลักชิ้นเดียวจบทั้งเว็บไซต์
         function renderGallery(filter = 'all') {
             const grid = document.getElementById('gallery-grid');
             filteredItems = filter === 'all' ? galleryItems : galleryItems.filter(item => item.category === filter);
@@ -286,6 +284,7 @@
         const lightboxCaption = document.getElementById('lightbox-caption');
         const swipeArea = document.getElementById('lightbox-swipe-area');
 
+        // ฟังก์ชันควบคุมป็อปอัป ซูมรูปภาพและตรวจจับ Swipe 
         function openLightbox(index) { const item = filteredItems[index]; showLightboxContent(item.src, item.title); }
         function showLightboxContent(src, title) { lightboxImage.src = src; lightboxCaption.textContent = title; lightbox.classList.remove('hidden'); lightbox.classList.add('flex'); document.body.style.overflow = 'hidden'; resetSwipeVariables(); }
         
