@@ -28,6 +28,22 @@
         }
     </script>
     <style>
+        /* 🛡️ [1/2] โค้ดบล็อกในระบบ (CSS) ป้องกันการเซฟรูปภาพทุกอุปกรณ์ (iOS, Android, PC) */
+        img {
+            -webkit-touch-callout: none !important;    /* บล็อกเมนูกดค้างบน iPhone / iPad */
+            -webkit-user-select: none !important;      /* บล็อกการไฮไลท์รูปบน Safari */
+            -khtml-user-select: none !important;
+            -moz-user-select: none !important;        /* บล็อกบน Firefox */
+            -ms-user-select: none !important;
+            user-select: none !important;              /* บล็อกการเลือกรูปทุกเบราว์เซอร์ */
+            pointer-events: none !important;           /* ล็อกไม่ให้จิ้ม ลาก หรือคลิกขวาที่ตัวรูปภาพได้ตรง ๆ */
+        }
+
+        /* เปิดให้ปุ่ม ลิงก์ และฟอร์มติดต่อกลับมาคลิกและพิมพ์ได้ปกติ */
+        a, button, input, textarea, select, .gallery-item, .commission-sample-item {
+            pointer-events: auto !important;
+        }
+
         /* Custom Masonry Grid */
         .masonry-grid {
             column-count: 1;
@@ -77,16 +93,13 @@
 </head>
 <body class="bg-charcoal-900 text-white font-sans antialiased">
 
-    <!-- Sticky Navigation -->
     <nav class="fixed top-0 left-0 right-0 z-50 bg-charcoal-900/95 backdrop-blur-md border-b border-charcoal-700">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex items-center justify-between h-16">
-                <!-- Logo -->
                 <a href="#" class="text-xl font-semibold tracking-tight">
                     <span class="text-white">NICHEY</span>
                 </a>
                 
-                <!-- Desktop Navigation -->
                 <div class="hidden md:flex items-center space-x-8">
                     <a href="#home" class="text-white/70 hover:text-white transition-colors duration-300 text-sm font-medium">Home</a>
                     <a href="#commissions" class="text-white/70 hover:text-white transition-colors duration-300 text-sm font-medium">Commissions</a>
@@ -94,7 +107,6 @@
                     <a href="#contact" class="text-white/70 hover:text-white transition-colors duration-300 text-sm font-medium">Contact</a>
                 </div>
                 
-                <!-- Mobile Menu Button -->
                 <button id="mobile-menu-btn" class="md:hidden p-2 rounded-lg hover:bg-charcoal-700 transition-colors">
                     <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path id="menu-icon" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
@@ -102,7 +114,6 @@
                 </button>
             </div>
             
-            <!-- Mobile Navigation -->
             <div id="mobile-menu" class="hidden md:hidden pb-4">
                 <div class="flex flex-col space-y-3">
                     <a href="#home" class="text-white/70 hover:text-white transition-colors duration-300 text-sm font-medium py-2">Home</a>
@@ -114,7 +125,6 @@
         </div>
     </nav>
 
-    <!-- Hero Section -->
     <section id="home" class="min-h-screen flex items-center justify-center pt-16 px-4">
         <div class="max-w-4xl mx-auto text-center">
             <div class="mb-8">
@@ -146,7 +156,6 @@
                 </a>
             </div>
             
-            <!-- Scroll Indicator -->
             <div class="mt-16 animate-bounce">
                 <svg class="w-6 h-6 mx-auto text-white/30" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3"></path>
@@ -155,7 +164,6 @@
         </div>
     </section>
 
-    <!-- Commission Information Section -->
     <section id="commissions" class="py-20 px-4">
         <div class="max-w-6xl mx-auto">
             <div class="text-center mb-12">
@@ -163,10 +171,8 @@
                 <p class="text-white/50 max-w-xl mx-auto">View my pricing and commission details below. Browse through examples of my finished work!</p>
             </div>
             
-            <!-- Large Pricing Sheet Banner Placeholder -->
             <div class="mb-16">
-                <div class="relative bg-charcoal-800 rounded-2xl border-2 border-dashed border-charcoal-600 hover:border-purple-500/50 transition-colors duration-300 overflow-hidden">
-                    <!-- Placeholder Content -->
+                <div class="relative bg-charcoal-800 rounded-2xl border-2 border-dashed border-charcoal-600 hover:border-purple-500/50 transition-colors duration-300 overflow-hidden select-none pointer-events-none">
                     <div class="aspect-[21/9] sm:aspect-[16/6] lg:aspect-[21/7] flex flex-col items-center justify-center p-8 text-center relative">
                         <div class="absolute inset-0 flex flex-col items-center justify-center text-white/20 p-4 z-10">
                             <svg class="w-20 h-20 sm:w-24 sm:h-24 mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -175,14 +181,12 @@
                             <h3 class="text-xl sm:text-2xl font-semibold text-white/40 mb-2">Commission Pricing & Scale Chart</h3>
                             <p class="text-sm sm:text-base text-white/30 max-w-md">Replace this placeholder with your unified pricing banner image</p>
                         </div>
-                        <!-- Replace src with your actual pricing chart image -->
                         <img src="https://picsum.photos/seed/pricechart/1200/400" alt="Commission Pricing Chart" class="absolute inset-0 w-full h-full object-cover opacity-30 hover:opacity-50 transition-opacity duration-300">
                     </div>
                 </div>
-                <p class="text-center text-white/40 text-sm mt-4">Click to view full size | Recommended size: 1920x640px or similar wide banner format</p>
+                <p class="text-center text-white/40 text-sm mt-4">Protected Artwork | Recommended size: 1920x640px or similar wide banner format</p>
             </div>
 
-            <!-- Commission Samples Sub-Gallery -->
             <div>
                 <div class="flex items-center justify-between mb-8">
                     <h3 class="text-xl sm:text-2xl font-semibold">Past Commission Examples</h3>
@@ -194,15 +198,12 @@
                     </a>
                 </div>
                 
-                <!-- Commission Samples Grid -->
                 <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-3 sm:gap-4" id="commission-samples-grid">
-                    <!-- Sample images will be populated by JavaScript -->
-                </div>
+                    </div>
             </div>
         </div>
     </section>
 
-    <!-- Gallery Section -->
     <section id="gallery" class="py-20 px-4">
         <div class="max-w-7xl mx-auto">
             <div class="text-center mb-16">
@@ -210,7 +211,6 @@
                 <p class="text-white/50 max-w-xl mx-auto">A collection of my digital artwork and illustrations</p>
             </div>
             
-            <!-- Filter Buttons -->
             <div class="flex flex-wrap justify-center gap-3 mb-12">
                 <button class="filter-btn active px-6 py-2 rounded-full text-sm font-medium bg-white text-charcoal-900 transition-all duration-300" data-filter="all">All</button>
                 <button class="filter-btn px-6 py-2 rounded-full text-sm font-medium bg-charcoal-700 text-white/70 hover:bg-charcoal-600 transition-all duration-300" data-filter="commission">Commissions</button>
@@ -218,14 +218,11 @@
                 <button class="filter-btn px-6 py-2 rounded-full text-sm font-medium bg-charcoal-700 text-white/70 hover:bg-charcoal-600 transition-all duration-300" data-filter="custom">Custom Design</button>
             </div>
             
-            <!-- Masonry Gallery -->
             <div class="masonry-grid" id="gallery-grid">
-                <!-- Gallery items will be populated by JavaScript -->
-            </div>
+                </div>
         </div>
     </section>
 
-    <!-- Contact Section -->
     <section id="contact" class="py-20 px-4 bg-charcoal-800">
         <div class="max-w-4xl mx-auto">
             <div class="text-center mb-16">
@@ -234,7 +231,6 @@
             </div>
             
             <div class="grid lg:grid-cols-2 gap-12">
-                <!-- Contact Form -->
                 <form id="contact-form" class="space-y-6">
                     <div>
                         <label for="name" class="block text-sm font-medium text-white/70 mb-2">Name</label>
@@ -274,7 +270,6 @@
                     </button>
                 </form>
                 
-                <!-- Social Links -->
                 <div class="lg:pl-8">
                     <h3 class="text-xl font-semibold mb-6">Connect With Me</h3>
                     <p class="text-white/50 mb-8 leading-relaxed">
@@ -297,7 +292,7 @@
                         <a href="#" class="flex items-center gap-4 p-4 bg-charcoal-700 rounded-xl hover:bg-charcoal-600 transition-colors duration-300 group">
                             <div class="w-12 h-12 bg-pink-500/20 rounded-lg flex items-center justify-center">
                                 <svg class="w-6 h-6 text-pink-400" fill="currentColor" viewBox="0 0 24 24">
-                                    <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+                                    <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0 3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
                                 </svg>
                             </div>
                             <div>
@@ -335,7 +330,6 @@
         </div>
     </section>
 
-    <!-- Footer -->
     <footer class="py-8 px-4 border-t border-charcoal-700">
         <div class="max-w-6xl mx-auto flex flex-col md:flex-row items-center justify-between gap-4">
             <p class="text-white/40 text-sm">© 2024 ArtStudio. All rights reserved.</p>
@@ -343,7 +337,6 @@
         </div>
     </footer>
 
-    <!-- Lightbox Modal -->
     <div id="lightbox" class="fixed inset-0 z-50 hidden items-center justify-center bg-black/95 p-4">
         <button id="lightbox-close" class="absolute top-4 right-4 p-2 text-white/70 hover:text-white transition-colors z-10">
             <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -366,7 +359,6 @@
         </div>
     </div>
 
-    <!-- Toast Notification -->
     <div id="toast" class="fixed bottom-4 right-4 transform translate-y-full opacity-0 transition-all duration-300 z-50">
         <div class="bg-green-500 text-white px-6 py-3 rounded-xl shadow-lg flex items-center gap-3">
             <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -377,6 +369,24 @@
     </div>
 
     <script>
+        // 🛡️ [2/2] โค้ดบล็อกฝั่งสคริปต์ (JavaScript) บล็อกคลิกขวา บล็อกคีย์ลัด และบล็อกระบบสัมผัสค้างบน Android
+        document.addEventListener('contextmenu', (e) => {
+            if (e.target.tagName === 'IMG' || e.target.closest('.gallery-item') || e.target.closest('.commission-sample-item')) {
+                e.preventDefault();
+                alert('ภาพผลงานมีลิขสิทธิ์ ไม่อนุญาตให้บันทึกภาพนะคะคุณลูกค้า 🎨✨');
+            }
+        });
+
+        // ป้องกันการกดคีย์ลัดดูดรูปบนคอมพิวเตอร์ (Ctrl+S, Ctrl+U, F12)
+        document.addEventListener('keydown', (e) => {
+            if (e.ctrlKey && (e.key === 's' || e.key === 'S' || e.key === 'u' || e.key === 'U')) {
+                e.preventDefault();
+            }
+            if (e.key === 'F12') {
+                e.preventDefault();
+            }
+        });
+
         // Gallery Data - Replace with your actual artwork
         const galleryItems = [
             { id: 1, src: 'https://picsum.photos/seed/art1/400/600', title: 'Mystic Forest Guardian', category: 'commission', aspect: 'tall' },
@@ -408,7 +418,7 @@
         let currentFilter = 'all';
         let currentIndex = 0;
         let filteredItems = galleryItems;
-        let currentLightboxSource = 'gallery'; // 'gallery' or 'commission'
+        let currentLightboxSource = 'gallery'; 
 
         // Render Commission Samples Grid
         function renderCommissionSamples() {
@@ -429,18 +439,10 @@
                                 <h3 class="text-white font-medium text-xs sm:text-sm">${item.title}</h3>
                             </div>
                         </div>
-                        <div class="absolute top-2 right-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                            <div class="w-8 h-8 bg-white/10 backdrop-blur-sm rounded-full flex items-center justify-center">
-                                <svg class="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0zM10 7v3m0 0v3m0-3h3m-3 0H7"></path>
-                                </svg>
-                            </div>
-                        </div>
                     </div>
                 </div>
             `).join('');
             
-            // Add click handlers for commission samples
             document.querySelectorAll('.commission-sample-item').forEach(item => {
                 item.addEventListener('click', () => {
                     currentIndex = parseInt(item.dataset.index);
@@ -472,18 +474,10 @@
                                 <span class="text-white/60 text-xs capitalize">${item.category}</span>
                             </div>
                         </div>
-                        <div class="absolute top-3 right-3 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                            <div class="w-10 h-10 bg-white/10 backdrop-blur-sm rounded-full flex items-center justify-center">
-                                <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0zM10 7v3m0 0v3m0-3h3m-3 0H7"></path>
-                                </svg>
-                            </div>
-                        </div>
                     </div>
                 </div>
             `).join('');
             
-            // Add click handlers
             document.querySelectorAll('.gallery-item').forEach(item => {
                 item.addEventListener('click', () => {
                     currentIndex = parseInt(item.dataset.index);
@@ -581,7 +575,6 @@
             mobileMenu.classList.toggle('hidden');
         });
 
-        // Close mobile menu on link click
         mobileMenu.querySelectorAll('a').forEach(link => {
             link.addEventListener('click', () => {
                 mobileMenu.classList.add('hidden');
@@ -591,15 +584,9 @@
         // Contact Form
         document.getElementById('contact-form').addEventListener('submit', (e) => {
             e.preventDefault();
-            
-            // Show toast
             const toast = document.getElementById('toast');
             toast.classList.remove('translate-y-full', 'opacity-0');
-            
-            // Reset form
             e.target.reset();
-            
-            // Hide toast after 3 seconds
             setTimeout(() => {
                 toast.classList.add('translate-y-full', 'opacity-0');
             }, 3000);
@@ -611,13 +598,11 @@
 
         window.addEventListener('scroll', () => {
             const currentScroll = window.pageYOffset;
-            
             if (currentScroll > 100) {
                 navbar.classList.add('shadow-lg');
             } else {
                 navbar.classList.remove('shadow-lg');
             }
-            
             lastScroll = currentScroll;
         });
 
