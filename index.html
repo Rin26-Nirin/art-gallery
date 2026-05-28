@@ -28,7 +28,7 @@
         }
     </script>
     <style>
-        /* 🛡️ 1. เกราะบล็อกในระบบ (CSS) ป้องกันการเซฟรูปภาพทุกอุปกรณ์ */
+        /* 🛡️ เกราะบล็อกในระบบ (CSS) ป้องกันการเซฟรูปภาพทุกอุปกรณ์ */
         img {
             -webkit-touch-callout: none !important;    /* บล็อกเมนูกดค้างบน iPhone / iPad */
             -webkit-user-select: none !important;      /* บล็อกการไฮไลท์รูปบน Safari */
@@ -152,7 +152,7 @@
                     View Gallery
                 </a>
                 <a href="#contact" class="px-8 py-3 border border-white/20 rounded-full font-medium hover:bg-white/5 transition-colors duration-300">
-                    Commission Me
+                    Contact Me
                 </a>
             </div>
             
@@ -225,115 +225,68 @@
     </section>
 
     <section id="contact" class="py-20 px-4 bg-charcoal-800">
-        <div class="max-w-4xl mx-auto">
-            <div class="text-center mb-16">
-                <h2 class="text-3xl sm:text-4xl font-bold mb-4">Get In Touch</h2>
-                <p class="text-white/50 max-w-xl mx-auto">Interested in a commission? Send me a message and let&apos;s create something amazing together!</p>
+        <div class="max-w-4xl mx-auto text-center">
+            <div class="mb-12">
+                <h2 class="text-3xl sm:text-4xl font-bold mb-4">Connect & Work With Me</h2>
+                <p class="text-white/50 max-w-xl mx-auto mb-2">Interested in a commission or have any questions?</p>
+                <p class="text-purple-400 font-medium">Please contact me directly through my social media channels for the fastest response!</p>
             </div>
             
-            <div class="grid lg:grid-cols-2 gap-12">
-                <form id="contact-form" class="space-y-6">
-                    <div>
-                        <label for="name" class="block text-sm font-medium text-white/70 mb-2">Name</label>
-                        <input type="text" id="name" name="name" required 
-                            class="w-full px-4 py-3 bg-charcoal-700 border border-charcoal-600 rounded-xl focus:outline-none focus:border-purple-500 transition-colors duration-300 text-white placeholder-white/30"
-                            placeholder="Your name">
+            <div class="grid sm:grid-cols-2 gap-4 max-w-3xl mx-auto">
+                <a href="#" class="flex items-center gap-4 p-4 bg-charcoal-700 rounded-xl hover:bg-charcoal-600 transition-colors duration-300 group text-left">
+                    <div class="w-12 h-12 bg-blue-500/20 rounded-lg flex items-center justify-center shrink-0">
+                        <svg class="w-6 h-6 text-blue-400" fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M23.953 4.57a10 10 0 01-2.825.775 4.958 4.958 0 002.163-2.723c-.951.555-2.005.959-3.127 1.184a4.92 4.92 0 00-8.384 4.482C7.69 8.095 4.067 6.13 1.64 3.162a4.822 4.822 0 00-.666 2.475c0 1.71.87 3.213 2.188 4.096a4.904 4.904 0 01-2.228-.616v.06a4.923 4.923 0 003.946 4.827 4.996 4.996 0 01-2.212.085 4.936 4.936 0 004.604 3.417 9.867 9.867 0 01-6.102 2.105c-.39 0-.779-.023-1.17-.067a13.995 13.995 0 007.557 2.209c9.053 0 13.998-7.496 13.998-13.985 0-.21 0-.42-.015-.63A9.935 9.935 0 0024 4.59z"/>
+                        </svg>
                     </div>
-                    
                     <div>
-                        <label for="email" class="block text-sm font-medium text-white/70 mb-2">Email</label>
-                        <input type="email" id="email" name="email" required 
-                            class="w-full px-4 py-3 bg-charcoal-700 border border-charcoal-600 rounded-xl focus:outline-none focus:border-purple-500 transition-colors duration-300 text-white placeholder-white/30"
-                            placeholder="your@email.com">
+                        <span class="font-medium group-hover:text-blue-400 transition-colors block">Twitter / X (Main)</span>
+                        <p class="text-sm text-white/40">@yourusername</p>
                     </div>
-                    
-                    <div>
-                        <label for="type" class="block text-sm font-medium text-white/70 mb-2">Commission Type</label>
-                        <select id="type" name="type" 
-                            class="w-full px-4 py-3 bg-charcoal-700 border border-charcoal-600 rounded-xl focus:outline-none focus:border-purple-500 transition-colors duration-300 text-white">
-                            <option value="portrait">One Character</option>
-                            <option value="fullbody">Two Character</option>
-                            <option value="scene">Scene/Background</option>
-                            <option value="other">Other</option>
-                        </select>
-                    </div>
-                    
-                    <div>
-                        <label for="message" class="block text-sm font-medium text-white/70 mb-2">Message</label>
-                        <textarea id="message" name="message" rows="4" required 
-                            class="w-full px-4 py-3 bg-charcoal-700 border border-charcoal-600 rounded-xl focus:outline-none focus:border-purple-500 transition-colors duration-300 text-white placeholder-white/30 resize-none"
-                            placeholder="Tell me about your project..."></textarea>
-                    </div>
-                    
-                    <button type="submit" 
-                        class="w-full py-4 bg-gradient-to-r from-purple-500 to-pink-500 rounded-xl font-medium hover:opacity-90 transition-opacity duration-300">
-                        Send Message
-                    </button>
-                </form>
+                </a>
                 
-                <div class="lg:pl-8">
-                    <h3 class="text-xl font-semibold mb-6">Connect With Me</h3>
-                    <p class="text-white/50 mb-8 leading-relaxed">
-                        Follow me on social media for updates on new artwork, commission slots, and live streaming schedules!
-                    </p>
-                    
-                    <div class="space-y-4">
-                        <a href="#" class="flex items-center gap-4 p-4 bg-charcoal-700 rounded-xl hover:bg-charcoal-600 transition-colors duration-300 group">
-                            <div class="w-12 h-12 bg-blue-500/20 rounded-lg flex items-center justify-center">
-                                <svg class="w-6 h-6 text-blue-400" fill="currentColor" viewBox="0 0 24 24">
-                                    <path d="M23.953 4.57a10 10 0 01-2.825.775 4.958 4.958 0 002.163-2.723c-.951.555-2.005.959-3.127 1.184a4.92 4.92 0 00-8.384 4.482C7.69 8.095 4.067 6.13 1.64 3.162a4.822 4.822 0 00-.666 2.475c0 1.71.87 3.213 2.188 4.096a4.904 4.904 0 01-2.228-.616v.06a4.923 4.923 0 003.946 4.827 4.996 4.996 0 01-2.212.085 4.936 4.936 0 004.604 3.417 9.867 9.867 0 01-6.102 2.105c-.39 0-.779-.023-1.17-.067a13.995 13.995 0 007.557 2.209c9.053 0 13.998-7.496 13.998-13.985 0-.21 0-.42-.015-.63A9.935 9.935 0 0024 4.59z"/>
-                                </svg>
-                            </div>
-                            <div>
-                                <span class="font-medium group-hover:text-blue-400 transition-colors">Twitter / X</span>
-                                <p class="text-sm text-white/40">@yourusername</p>
-                            </div>
-                        </a>
-                        
-                        <a href="#" class="flex items-center gap-4 p-4 bg-charcoal-700 rounded-xl hover:bg-charcoal-600 transition-colors duration-300 group">
-                            <div class="w-12 h-12 bg-pink-500/20 rounded-lg flex items-center justify-center">
-                                <svg class="w-6 h-6 text-pink-400" fill="currentColor" viewBox="0 0 24 24">
-                                    <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0 3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
-                                </svg>
-                            </div>
-                            <div>
-                                <span class="font-medium group-hover:text-pink-400 transition-colors">Instagram</span>
-                                <p class="text-sm text-white/40">@yourusername</p>
-                            </div>
-                        </a>
-                        
-                        <a href="#" class="flex items-center gap-4 p-4 bg-charcoal-700 rounded-xl hover:bg-charcoal-600 transition-colors duration-300 group">
-                            <div class="w-12 h-12 bg-orange-500/20 rounded-lg flex items-center justify-center">
-                                <svg class="w-6 h-6 text-orange-400" fill="currentColor" viewBox="0 0 24 24">
-                                    <path d="M12.017 0C5.396 0 .029 5.367.029 11.987c0 5.079 3.158 9.417 7.618 11.162-.105-.949-.199-2.403.041-3.439.219-.937 1.406-5.957 1.406-5.957s-.359-.72-.359-1.781c0-1.663.967-2.911 2.168-2.911 1.024 0 1.518.769 1.518 1.688 0 1.029-.653 2.567-.992 3.992-.285 1.193.6 2.165 1.775 2.165 2.128 0 3.768-2.245 3.768-5.487 0-2.861-2.063-4.869-5.008-4.869-3.41 0-5.409 2.562-5.409 5.199 0 1.033.394 2.143.889 2.741.099.12.112.225.085.345-.09.375-.293 1.199-.334 1.363-.053.225-.172.271-.401.165-1.495-.69-2.433-2.878-2.433-4.646 0-3.776 2.748-7.252 7.92-7.252 4.158 0 7.392 2.967 7.392 6.923 0 4.135-2.607 7.462-6.233 7.462-1.214 0-2.354-.629-2.758-1.379l-.749 2.848c-.269 1.045-1.004 2.352-1.498 3.146 1.123.345 2.306.535 3.55.535 6.607 0 11.985-5.365 11.985-11.987C23.97 5.39 18.592.026 11.985.026L12.017 0z"/>
-                                </svg>
-                            </div>
-                            <div>
-                                <span class="font-medium group-hover:text-orange-400 transition-colors">Pinterest</span>
-                                <p class="text-sm text-white/40">@yourusername</p>
-                            </div>
-                        </a>
-                        
-                        <a href="#" class="flex items-center gap-4 p-4 bg-charcoal-700 rounded-xl hover:bg-charcoal-600 transition-colors duration-300 group">
-                            <div class="w-12 h-12 bg-purple-500/20 rounded-lg flex items-center justify-center">
-                                <svg class="w-6 h-6 text-purple-400" fill="currentColor" viewBox="0 0 24 24">
-                                    <path d="M11.64 5.93h.08c.13 0 1.04.02 2 .11.02 0 .04 0 .06.01.02 0 .04.01.06.01.02.01.04.01.06.02.02.01.04.01.06.02.02.01.04.01.06.02.19.06.36.14.52.23.02.01.04.03.06.04.01.01.03.02.04.03l.05.04c.01.01.03.02.04.04.02.01.03.03.05.04.01.01.02.02.03.03l.05.05.03.03c.02.02.03.04.05.06l.02.03c.02.02.03.05.05.07l.02.03c.01.02.03.05.04.07l.02.03c.01.03.03.05.04.08l.01.03c.01.03.02.05.04.08l.01.03c.01.03.02.06.03.09l.01.03c.01.03.02.06.03.09l.01.03c.01.03.01.06.02.09 0 .01.01.03.01.04.01.03.01.06.02.09 0 .02.01.03.01.05 0 .03.01.06.01.09 0 .02 0 .03.01.05 0 .03.01.06.01.1v.05c0 .03 0 .07.01.1v.06c0 .04 0 .07-.01.11v.06c0 .04 0 .07-.01.11 0 .02 0 .04-.01.06 0 .04-.01.07-.01.11 0 .02-.01.04-.01.06-.01.04-.01.07-.02.11 0 .02-.01.04-.01.06-.01.04-.02.08-.03.11-.01.02-.01.04-.02.06-.01.04-.02.08-.03.11-.01.02-.01.04-.02.06-.01.04-.03.08-.04.11-.01.02-.02.04-.03.06l-.05.11c-.01.02-.02.04-.03.06-.02.04-.04.07-.06.11-.01.02-.02.04-.04.06-.02.04-.05.07-.07.11-.01.02-.03.03-.04.05-.03.04-.06.07-.09.11-.01.02-.03.03-.04.05-.03.03-.07.07-.1.1-.02.02-.03.03-.05.05-.04.03-.07.06-.11.09-.02.01-.03.03-.05.04-.04.03-.08.06-.13.09l-.05.03c-.05.03-.1.06-.15.08l-.05.03c-.05.03-.11.05-.17.08l-.05.02c-.06.03-.12.05-.18.07l-.05.02c-.06.02-.13.04-.2.06l-.04.01c-.07.02-.14.04-.21.05l-.04.01c-.07.02-.15.03-.23.04h-.04c-.08.01-.16.02-.24.03h-.04c-.09.01-.17.01-.26.02H12c-.09 0-.18-.01-.27-.02h-.04c-.08-.01-.16-.02-.25-.03h-.04c-.08-.01-.16-.03-.23-.04l-.04-.01c-.08-.02-.15-.03-.22-.05l-.04-.01c-.07-.02-.14-.04-.2-.06l-.05-.02c-.06-.02-.13-.04-.19-.07l-.05-.02c-.06-.03-.12-.05-.17-.08l-.05-.03c-.05-.03-.1-.06-.15-.08l-.05-.03c-.05-.03-.09-.06-.13-.09-.02-.01-.04-.03-.05-.04-.04-.03-.08-.06-.11-.09-.02-.02-.04-.03-.05-.05-.04-.03-.07-.07-.1-.1-.02-.02-.03-.03-.05-.05-.03-.04-.06-.07-.09-.11-.01-.02-.03-.03-.04-.05-.03-.04-.05-.07-.08-.11-.01-.02-.03-.04-.04-.06-.02-.04-.05-.07-.07-.11-.01-.02-.03-.04-.04-.06-.02-.04-.04-.07-.06-.11-.01-.02-.02-.04-.03-.06l-.05-.11c-.01-.02-.02-.04-.03-.06-.02-.04-.03-.08-.04-.11-.01-.02-.01-.04-.02-.06-.01-.04-.02-.08-.03-.11-.01-.02-.01-.04-.02-.06-.01-.04-.02-.08-.03-.12 0-.02-.01-.04-.01-.06-.01-.04-.01-.08-.02-.12 0-.02-.01-.04-.01-.06 0-.04-.01-.08-.01-.12 0-.02-.01-.04-.01-.06 0-.04 0-.08-.01-.12v-.06c0-.04 0-.08.01-.12v-.06c0-.04.01-.08.01-.12 0-.02.01-.04.01-.06.01-.04.01-.08.02-.12 0-.02.01-.04.01-.06.01-.04.02-.08.03-.12.01-.02.01-.04.02-.06.01-.04.02-.08.04-.12l.03-.06c.02-.04.03-.08.05-.12.01-.02.02-.04.03-.06.02-.04.04-.08.07-.12.01-.02.02-.04.04-.06.03-.04.05-.08.08-.12.02-.02.03-.04.05-.06.03-.04.06-.07.1-.11.02-.02.04-.04.06-.05.04-.04.08-.07.12-.1.02-.02.04-.03.06-.05.05-.03.09-.07.14-.1l.06-.04c.05-.03.11-.06.17-.09l.05-.03c.06-.03.13-.06.2-.09.02-.01.04-.02.06-.02.07-.03.15-.05.23-.08.02-.01.04-.01.07-.02.08-.02.16-.04.24-.06.02-.01.05-.01.07-.02.08-.02.17-.03.26-.05.03 0 .05-.01.08-.01.09-.01.18-.02.28-.03.03 0 .06 0 .09-.01.1-.01.21-.01.32-.01zM12 0C5.37 0 0 5.37 0 12s5.37 12 12 12 12-5.37 12-12S18.63 0 12 0zm0 22C6.48 22 2 17.52 2 12S6.48 2 12 2s10 4.48 10 10-4.48 10-10 10z"/>
-                                </svg>
-                            </div>
-                            <div>
-                                <span class="font-medium group-hover:text-purple-400 transition-colors">Twitch</span>
-                                <p class="text-sm text-white/40">@yourusername</p>
-                            </div>
-                        </a>
+                <a href="#" class="flex items-center gap-4 p-4 bg-charcoal-700 rounded-xl hover:bg-charcoal-600 transition-colors duration-300 group text-left">
+                    <div class="w-12 h-12 bg-pink-500/20 rounded-lg flex items-center justify-center shrink-0">
+                        <svg class="w-6 h-6 text-pink-400" fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0 3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+                        </svg>
                     </div>
-                </div>
+                    <div>
+                        <span class="font-medium group-hover:text-pink-400 transition-colors block">Instagram</span>
+                        <p class="text-sm text-white/40">@yourusername</p>
+                    </div>
+                </a>
+                
+                <a href="#" class="flex items-center gap-4 p-4 bg-charcoal-700 rounded-xl hover:bg-charcoal-600 transition-colors duration-300 group text-left">
+                    <div class="w-12 h-12 bg-orange-500/20 rounded-lg flex items-center justify-center shrink-0">
+                        <svg class="w-6 h-6 text-orange-400" fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M12.017 0C5.396 0 .029 5.367.029 11.987c0 5.079 3.158 9.417 7.618 11.162-.105-.949-.199-2.403.041-3.439.219-.937 1.406-5.957 1.406-5.957s-.359-.72-.359-1.781c0-1.663.967-2.911 2.168-2.911 1.024 0 1.518.769 1.518 1.688 0 1.029-.653 2.567-.992 3.992-.285 1.193.6 2.165 1.775 2.165 2.128 0 3.768-2.245 3.768-5.487 0-2.861-2.063-4.869-5.008-4.869-3.41 0-5.409 2.562-5.409 5.199 0 1.033.394 2.143.889 2.741.099.12.112.225.085.345-.09.375-.293 1.199-.334 1.363-.053.225-.172.271-.401.165-1.495-.69-2.433-2.878-2.433-4.646 0-3.776 2.748-7.252 7.92-7.252 4.158 0 7.392 2.967 7.392 6.923 0 4.135-2.607 7.462-6.233 7.462-1.214 0-2.354-.629-2.758-1.379l-.749 2.848c-.269 1.045-1.004 2.352-1.498 3.146 1.123.345 2.306.535 3.55.535 6.607 0 11.985-5.365 11.985-11.987C23.97 5.39 18.592.026 11.985.026L12.017 0z"/>
+                        </svg>
+                    </div>
+                    <div>
+                        <span class="font-medium group-hover:text-orange-400 transition-colors block">Pinterest</span>
+                        <p class="text-sm text-white/40">@yourusername</p>
+                    </div>
+                </a>
+                
+                <a href="#" class="flex items-center gap-4 p-4 bg-charcoal-700 rounded-xl hover:bg-charcoal-600 transition-colors duration-300 group text-left">
+                    <div class="w-12 h-12 bg-purple-500/20 rounded-lg flex items-center justify-center shrink-0">
+                        <svg class="w-6 h-6 text-purple-400" fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M11.64 5.93h.08c.13 0 1.04.02 2 .11.02 0 .04 0 .06.01.02 0 .04.01.06.01.02.01.04.01.06.02.02.01.04.01.06.02.02.01.04.01.06.02.19.06.36.14.52.23.02.01.04.03.06.04.01.01.03.02.04.03l.05.04c.01.01.03.02.04.04.02.01.03.03.05.04.01.01.02.02.03.03l.05.05.03.03c.02.02.03.04.05.06l.02.03c.02.02.03.05.05.07l.02.03c.01.02.03.05.04.07l.02.03c.01.03.03.05.04.08l.01.03c.01.03.02.05.04.08l.01.03c.01.03.02.06.03.09l.01.03c.01.03.02.06.03.09l.01.03c.01.03.01.06.02.09 0 .01.01.03.01.04.01.03.01.06.02.09 0 .02.01.03.01.05 0 .03.01.06.01.09 0 .02 0 .03.01.05 0 .03.01.06.01.1v.05c0 .03 0 .07.01.1v.06c0 .04 0 .07-.01.11v.06c0 .04 0 .07-.01.11 0 .02 0 .04-.01.06z"/>
+                        </svg>
+                    </div>
+                    <div>
+                        <span class="font-medium group-hover:text-purple-400 transition-colors block">Twitch</span>
+                        <p class="text-sm text-white/40">@yourusername</p>
+                    </div>
+                </a>
             </div>
         </div>
     </section>
 
     <footer class="py-8 px-4 border-t border-charcoal-700">
         <div class="max-w-6xl mx-auto flex flex-col md:flex-row items-center justify-between gap-4">
-            <p class="text-white/40 text-sm">© 2024 ArtStudio. All rights reserved.</p>
+            <p class="text-white/40 text-sm">© 2026 NICHEY. All rights reserved.</p>
             <p class="text-white/40 text-sm">Made with ❤️ for digital art lovers</p>
         </div>
     </footer>
@@ -359,15 +312,6 @@
             <img id="lightbox-image" src="" alt="" class="max-w-full max-h-[85vh] object-contain rounded-lg relative z-0">
             <div class="absolute inset-0 z-10 bg-transparent select-none"></div>
             <p id="lightbox-caption" class="absolute bottom-[-40px] left-0 right-0 text-center text-white/70 text-sm z-20"></p>
-        </div>
-    </div>
-
-    <div id="toast" class="fixed bottom-4 right-4 transform translate-y-full opacity-0 transition-all duration-300 z-50">
-        <div class="bg-green-500 text-white px-6 py-3 rounded-xl shadow-lg flex items-center gap-3">
-            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
-            </svg>
-            <span>Message sent successfully!</span>
         </div>
     </div>
 
@@ -499,7 +443,6 @@
         const lightboxImage = document.getElementById('lightbox-image');
         const lightboxCaption = document.getElementById('lightbox-caption');
 
-        // 🛡️ คืนชีพรูปใหญ่เต็มตา โหลด URL ตรงเข้าสู่แท็กโดยไม่มีอะไรหดตัว แต่ปิดการมีปฏิกิริยา Pointer บล็อกบันทึกภาพ
         function openLightbox(index) {
             const item = filteredItems[index];
             lightboxImage.src = item.src;
@@ -573,17 +516,6 @@
             link.addEventListener('click', () => {
                 mobileMenu.classList.add('hidden');
             });
-        });
-
-        // Contact Form
-        document.getElementById('contact-form').addEventListener('submit', (e) => {
-            e.preventDefault();
-            const toast = document.getElementById('toast');
-            toast.classList.remove('translate-y-full', 'opacity-0');
-            e.target.reset();
-            setTimeout(() => {
-                toast.classList.add('translate-y-full', 'opacity-0');
-            }, 3000);
         });
 
         // Navbar scroll effect
