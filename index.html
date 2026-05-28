@@ -28,7 +28,7 @@
         }
     </script>
     <style>
-        /* 🛡️ [1/2] โค้ดบล็อกในระบบ (CSS) ป้องกันการเซฟรูปภาพทุกอุปกรณ์ (iOS, Android, PC) */
+        /* 🛡️ ป้องกันการเซฟรูปภาพทุกอุปกรณ์ (iOS, Android, PC) */
         img {
             -webkit-touch-callout: none !important;    /* บล็อกเมนูกดค้างบน iPhone / iPad */
             -webkit-user-select: none !important;      /* บล็อกการไฮไลท์รูปบน Safari */
@@ -89,22 +89,6 @@
             from { transform: scale(0.9); opacity: 0; }
             to { transform: scale(1); opacity: 1; }
         }
-
-        /* 🤫 ไม้ตายลับ: ถ้ามีการกด Ctrl + S หรือสั่ง Print หน้าเว็บ ให้ซ่อนรูปภาพทั้งหมดทันที */
-@media print {
-    img, .gallery-item, .commission-sample-item, [class*="bg-charcoal"] {
-        display: none !important; /* สั่งหายตัว */
-    }
-    body::before {
-        content: "ไม่อนุญาตให้บันทึกภาพผลงานนะคะ! 🎨✨";
-        color: #000;
-        font-size: 24px;
-        font-weight: bold;
-        text-align: center;
-        display: block;
-        margin-top: 50px;
-    }
-}
     </style>
 </head>
 <body class="bg-charcoal-900 text-white font-sans antialiased">
@@ -369,8 +353,8 @@
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
             </svg>
         </button>
-        <div class="max-w-5xl max-h-[90vh] lightbox-image">
-            <img id="lightbox-image" src="" alt="" class="max-w-full max-h-[85vh] object-contain rounded-lg">
+        <div class="max-w-5xl max-h-[90vh]">
+            <img id="lightbox-image" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" alt="" class="max-w-full max-h-[85vh] object-contain rounded-lg">
             <p id="lightbox-caption" class="text-center text-white/70 mt-4 text-sm"></p>
         </div>
     </div>
@@ -385,7 +369,7 @@
     </div>
 
     <script>
-        // 🛡️ [2/2] โค้ดบล็อกฝั่งสคริปต์ (JavaScript) บล็อกคลิกขวา บล็อกคีย์ลัด และบล็อกระบบสัมผัสค้างบน Android
+        // 🛡️ บล็อกคลิกขวา บล็อกคีย์ลัดปกติบนเดสก์ท็อป
         document.addEventListener('contextmenu', (e) => {
             if (e.target.tagName === 'IMG' || e.target.closest('.gallery-item') || e.target.closest('.commission-sample-item')) {
                 e.preventDefault();
@@ -393,7 +377,6 @@
             }
         });
 
-        // ป้องกันการกดคีย์ลัดดูดรูปบนคอมพิวเตอร์ (Ctrl+S, Ctrl+U, F12)
         document.addEventListener('keydown', (e) => {
             if (e.ctrlKey && (e.key === 's' || e.key === 'S' || e.key === 'u' || e.key === 'U')) {
                 e.preventDefault();
@@ -403,23 +386,23 @@
             }
         });
 
-        // Gallery Data - Replace with your actual artwork
+        // Gallery Data - เปลี่ยนชื่อ/ลิงก์ให้ตรงกับที่อัปโหลดขึ้น GitHub หรือ Imgur ได้เลย
         const galleryItems = [
-            { id: 1, src: 'https://picsum.photos/seed/art1/400/600', title: 'Mystic Forest Guardian', category: 'commission', aspect: 'tall' },
-            { id: 2, src: 'https://picsum.photos/seed/art2/500/400', title: 'Cyber Punk Character', category: 'adoptable', aspect: 'wide' },
-            { id: 3, src: 'https://picsum.photos/seed/art3/400/500', title: 'Custom OC Design', category: 'custom', aspect: 'tall' },
-            { id: 4, src: 'https://picsum.photos/seed/art4/450/450', title: 'Fantasy Portrait', category: 'commission', aspect: 'square' },
-            { id: 5, src: 'https://picsum.photos/seed/art5/400/650', title: 'Dragon Rider', category: 'commission', aspect: 'tall' },
-            { id: 6, src: 'https://picsum.photos/seed/art6/500/350', title: 'Neon Dreams Adoptable', category: 'adoptable', aspect: 'wide' },
-            { id: 7, src: 'https://picsum.photos/seed/art7/400/400', title: 'Custom Character Sheet', category: 'custom', aspect: 'square' },
-            { id: 8, src: 'https://picsum.photos/seed/art8/380/580', title: 'Elven Princess', category: 'commission', aspect: 'tall' },
-            { id: 9, src: 'https://picsum.photos/seed/art9/480/380', title: 'Chibi Collection', category: 'adoptable', aspect: 'wide' },
-            { id: 10, src: 'https://picsum.photos/seed/art10/400/550', title: 'Custom Character Concept', category: 'custom', aspect: 'tall' },
-            { id: 11, src: 'https://picsum.photos/seed/art11/420/420', title: 'Magical Creature', category: 'adoptable', aspect: 'square' },
-            { id: 12, src: 'https://picsum.photos/seed/art12/400/620', title: 'Commission: OC Portrait', category: 'commission', aspect: 'tall' },
+            { id: 1, src: 'https://picsum.photos/seed/art1/400/600', title: 'Mystic Forest Guardian', category: 'commission' },
+            { id: 2, src: 'https://picsum.photos/seed/art2/500/400', title: 'Cyber Punk Character', category: 'adoptable' },
+            { id: 3, src: 'https://picsum.photos/seed/art3/400/500', title: 'Custom OC Design', category: 'custom' },
+            { id: 4, src: 'https://picsum.photos/seed/art4/450/450', title: 'Fantasy Portrait', category: 'commission' },
+            { id: 5, src: 'https://picsum.photos/seed/art5/400/650', title: 'Dragon Rider', category: 'commission' },
+            { id: 6, src: 'https://picsum.photos/seed/art6/500/350', title: 'Neon Dreams Adoptable', category: 'adoptable' },
+            { id: 7, src: 'https://picsum.photos/seed/art7/400/400', title: 'Custom Character Sheet', category: 'custom' },
+            { id: 8, src: 'https://picsum.photos/seed/art8/380/580', title: 'Elven Princess', category: 'commission' },
+            { id: 9, src: 'https://picsum.photos/seed/art9/480/380', title: 'Chibi Collection', category: 'adoptable' },
+            { id: 10, src: 'https://picsum.photos/seed/art10/400/550', title: 'Custom Character Concept', category: 'custom' },
+            { id: 11, src: 'https://picsum.photos/seed/art11/420/420', title: 'Magical Creature', category: 'adoptable' },
+            { id: 12, src: 'https://picsum.photos/seed/art12/400/620', title: 'Commission: OC Portrait', category: 'commission' },
         ];
 
-        // Commission Samples Data - Replace with your actual commission examples
+        // Commission Samples Data - ใส่ชื่อไฟล์รูปที่ต้องการแสดงที่นี่ได้เลยครับ
         const commissionSamples = [
             { id: 1, src: 'one-character.jpg', title: 'One Character' },
             { id: 2, src: 'two-character.jpg', title: 'Two Character' },
@@ -436,21 +419,16 @@
         let filteredItems = galleryItems;
         let currentLightboxSource = 'gallery'; 
 
-        // Render Commission Samples Grid
+        // 🛡️ ระบบแผ่นใสบังรูปภาพคอมมิชชันแกลเลอรี
         function renderCommissionSamples() {
             const grid = document.getElementById('commission-samples-grid');
             if (!grid) return;
             
             grid.innerHTML = commissionSamples.map((item, index) => `
                 <div class="commission-sample-item cursor-pointer group" data-index="${index}">
-                    <div class="relative aspect-square overflow-hidden rounded-xl bg-charcoal-700">
-                        <img 
-                            src="${item.src}" 
-                            alt="${item.title}"
-                            class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
-                            loading="lazy"
-                        >
-                        <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                    <div class="relative aspect-square overflow-hidden rounded-xl bg-charcoal-700 bg-cover bg-center" style="background-image: url('${item.src}');">
+                        <img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" class="w-full h-full object-cover absolute inset-0 z-10">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-20">
                             <div class="absolute bottom-0 left-0 right-0 p-3">
                                 <h3 class="text-white font-medium text-xs sm:text-sm">${item.title}</h3>
                             </div>
@@ -468,31 +446,27 @@
             });
         }
 
-        // Render Gallery
+        // 🛡️ ระบบแผ่นใสบังรูปภาพหลักในแกลเลอรี
         function renderGallery(filter = 'all') {
             const grid = document.getElementById('gallery-grid');
-            filteredItems = filter === 'all' 
-                ? galleryItems 
-                : galleryItems.filter(item => item.category === filter);
+            filteredItems = filter === 'all' ? galleryItems : galleryItems.filter(item => item.category === filter);
             
-            grid.innerHTML = filteredItems.map((item, index) => `
-                <div class="masonry-item gallery-item cursor-pointer group" data-index="${index}">
-                    <div class="relative overflow-hidden rounded-xl bg-charcoal-700">
-                        <img 
-                            src="${item.src}" 
-                            alt="${item.title}"
-                            class="w-full h-auto object-cover transition-transform duration-500 group-hover:scale-110"
-                            loading="lazy"
-                        >
-                        <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                            <div class="absolute bottom-0 left-0 right-0 p-4">
-                                <h3 class="text-white font-medium text-sm">${item.title}</h3>
-                                <span class="text-white/60 text-xs capitalize">${item.category}</span>
+            grid.innerHTML = filteredItems.map((item, index) => {
+                let heightClass = item.aspect === 'tall' ? 'h-80' : item.aspect === 'wide' ? 'h-48' : 'h-64';
+                return `
+                    <div class="masonry-item gallery-item cursor-pointer group" data-index="${index}">
+                        <div class="relative overflow-hidden rounded-xl bg-charcoal-700 bg-cover bg-center ${heightClass}" style="background-image: url('${item.src}');">
+                            <img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" class="w-full h-full object-cover absolute inset-0 z-10">
+                            <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-20">
+                                <div class="absolute bottom-0 left-0 right-0 p-4">
+                                    <h3 class="text-white font-medium text-sm">${item.title}</h3>
+                                    <span class="text-white/60 text-xs capitalize">${item.category}</span>
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
-            `).join('');
+                `;
+            }).join('');
             
             document.querySelectorAll('.gallery-item').forEach(item => {
                 item.addEventListener('click', () => {
@@ -517,14 +491,17 @@
             });
         });
 
-        // Lightbox Functions
+        // Lightbox Control
         const lightbox = document.getElementById('lightbox');
         const lightboxImage = document.getElementById('lightbox-image');
         const lightboxCaption = document.getElementById('lightbox-caption');
 
         function openLightbox(index) {
             const item = filteredItems[index];
-            lightboxImage.src = item.src;
+            lightboxImage.style.backgroundImage = `url('${item.src}')`;
+            lightboxImage.style.backgroundSize = 'contain';
+            lightboxImage.style.backgroundRepeat = 'no-repeat';
+            lightboxImage.style.backgroundPosition = 'center';
             lightboxCaption.textContent = item.title;
             lightbox.classList.remove('hidden');
             lightbox.classList.add('flex');
@@ -533,7 +510,10 @@
 
         function openLightboxForCommission(index) {
             const item = commissionSamples[index];
-            lightboxImage.src = item.src;
+            lightboxImage.style.backgroundImage = `url('${item.src}')`;
+            lightboxImage.style.backgroundSize = 'contain';
+            lightboxImage.style.backgroundRepeat = 'no-repeat';
+            lightboxImage.style.backgroundPosition = 'center';
             lightboxCaption.textContent = item.title;
             lightbox.classList.remove('hidden');
             lightbox.classList.add('flex');
