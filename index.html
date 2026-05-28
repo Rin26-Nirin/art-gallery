@@ -44,6 +44,7 @@
             pointer-events: auto !important;
         }
 
+        /* Custom Masonry Grid */
         .masonry-grid {
             column-count: 1;
             column-gap: 1rem;
@@ -185,7 +186,7 @@
             <div class="flex justify-center">
                 <a href="https://www.facebook.com/yourpagename" target="_blank" 
                    class="inline-flex items-center gap-6 px-10 py-6 bg-[#1877F2] hover:bg-[#166fe5] rounded-2xl shadow-xl shadow-blue-500/10 transition-all duration-300 group transform hover:-translate-y-1">
-                    <div class="w-16 h-16 bg-white/10 rounded-xl flex items-center justify-center shrink-0">
+                    <div class="w-12 h-12 bg-white/10 rounded-xl flex items-center justify-center shrink-0">
                         <i class="fa-brands fa-facebook text-3xl text-white"></i>
                     </div>
                     <div class="text-left">
@@ -206,9 +207,12 @@
 
     <div id="lightbox" class="fixed inset-0 z-50 hidden items-center justify-center bg-black/95 p-4 select-none">
         <button id="lightbox-close" class="absolute top-4 right-4 p-2 text-white/70 hover:text-white transition-colors z-30"><svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg></button>
+        
         <div id="lightbox-swipe-area" class="z-20"></div>
+
         <button id="lightbox-prev" class="absolute left-4 top-1/2 -translate-y-1/2 p-2 text-white/70 hover:text-white transition-colors z-20 md:block hidden"><svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path></svg></button>
         <button id="lightbox-next" class="absolute right-4 top-1/2 -translate-y-1/2 p-2 text-white/70 hover:text-white transition-colors z-20 md:block hidden"><svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg></button>
+        
         <div class="max-w-5xl max-h-[90vh] relative lightbox-image-container flex flex-col items-center justify-center z-10 pointer-events-none">
             <img id="lightbox-image" src="" alt="" class="max-w-full max-h-[85vh] object-contain rounded-lg">
             <p id="lightbox-caption" class="text-center text-white/70 mt-4 text-sm"></p>
@@ -216,7 +220,7 @@
     </div>
 
     <script>
-        // 🛡️ ระบบป้องกันความปลอดภัย
+        // 🛡️ บล็อกคีย์ลัดและคลิกขวา
         document.addEventListener('contextmenu', (e) => {
             if (e.target.tagName === 'IMG' || e.target.closest('.gallery-item') || e.target.closest('.commission-sample-item') || e.target.closest('.lightbox-image-container')) {
                 e.preventDefault();
@@ -227,7 +231,7 @@
             if ((e.ctrlKey && (e.key === 's' || e.key === 'S' || e.key === 'u' || e.key === 'U')) || e.key === 'F12') e.preventDefault();
         });
 
-        // 🎨 ฐานข้อมูลรูปภาพแกลเลอรีหลัก (ล่างสุด)
+        // 🎨 ฐานข้อมูลรูปภาพแกลเลอรีหลัก (ล่างสุด) - ตัวแปรคัดกรองรูปภาพ
         const galleryItems = [
             { id: 1, src: 'mymman-adoptable.jpg', title: 'My Man Adoptable', category: 'adoptable' },
             { id: 2, src: 'happy-adoptable.jpg', title: 'Happy Adoptable', category: 'adoptable' },
@@ -253,24 +257,36 @@
             { id: 22, src: 'csm5.jpg', title: 'One Character Sample 5', category: 'commission' }
         ];
 
-        // 🛠️ อัปเดตส่วนตัวอย่างคอมมิชชัน (บน): เปลี่ยนเป็น One Character ปก csm1 และใส่ตัวอย่าง csm1-csm5 ครบชุด!
-        const commissionSamples = [
-            { id: 1, src: 'csm1.jpg', title: 'One Character (Watermarked)' },
-            { id: 2, src: 'csm2.jpg', title: 'One Character Sample 2' },
-            { id: 3, src: 'csm3.jpg', title: 'One Character Sample 3' },
-            { id: 4, src: 'csm4.jpg', title: 'One Character Sample 4' },
-            { id: 5, src: 'csm5.jpg', title: 'One Character Sample 5' },
-            { id: 6, src: 'cos1.jpg', title: 'Two Characters / Complex Sample' }
+        // 🛠️ โครงสร้างสารบัญกลุ่มรูปภาพตัวจริง (ข้างในดึงออกมาสไลด์)
+        const commissionGroups = {
+            'one-character': [
+                { src: 'csm1.jpg', title: 'One Character - Sample 1' },
+                { src: 'csm2.jpg', title: 'One Character - Sample 2' },
+                { src: 'csm3.jpg', title: 'One Character - Sample 3' },
+                { src: 'csm4.jpg', title: 'One Character - Sample 4' },
+                { src: 'csm5.jpg', title: 'One Character - Sample 5' }
+            ],
+            'complex-character': [
+                { src: 'cos1.jpg', title: 'Two Characters / Complex Background' }
+            ]
+        };
+
+        // 🛠️ หน้าปกที่โชว์จริงในส่วน Past Commission แถวบนสุด (เหลือแค่ 2 ปกตามบรีฟเป๊ะ ๆ)
+        const commissionCovers = [
+            { id: 'one-character', src: 'csm1.jpg', title: 'One Character (งานเดี่ยว)' },
+            { id: 'complex-character', src: 'cos1.jpg', title: 'Multi Characters / Complex BG' }
         ];
 
-        let currentFilter = 'all'; let currentIndex = 0; let filteredItems = galleryItems; let currentLightboxSource = 'gallery'; 
+        let currentFilter = 'all'; let currentIndex = 0; let filteredItems = galleryItems; 
+        let currentLightboxSource = 'gallery'; let currentActiveGroup = [];
         let touchstartX = 0; let touchendX = 0; const swipeThreshold = 50;
 
+        // 🛠️ พ่นหน้าปกคอมมิชชันแบบสะอาดตา
         function renderCommissionSamples() {
             const grid = document.getElementById('commission-samples-grid');
             if (!grid) return;
-            grid.innerHTML = commissionSamples.map((item, index) => `
-                <div class="commission-sample-item cursor-pointer group" data-index="${index}">
+            grid.innerHTML = commissionCovers.map((item) => `
+                <div class="commission-sample-item cursor-pointer group" data-group-id="${item.id}">
                     <div class="relative aspect-square overflow-hidden rounded-xl bg-charcoal-700 bg-cover bg-center" style="background-image: url('${item.src}');">
                         <div class="w-full h-full absolute inset-0 z-10 bg-transparent"></div>
                         <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-20">
@@ -279,7 +295,16 @@
                     </div>
                 </div>
             `).join('');
-            document.querySelectorAll('.commission-sample-item').forEach(item => { item.addEventListener('click', () => { currentIndex = parseInt(item.dataset.index); currentLightboxSource = 'commission'; openLightboxForCommission(currentIndex); }); });
+            
+            document.querySelectorAll('.commission-sample-item').forEach(item => {
+                item.addEventListener('click', () => {
+                    const groupId = item.dataset.groupId;
+                    currentActiveGroup = commissionGroups[groupId];
+                    currentIndex = 0;
+                    currentLightboxSource = 'group';
+                    openLightboxForGroup(currentIndex);
+                });
+            });
         }
 
         function renderGallery(filter = 'all') {
@@ -312,12 +337,30 @@
         const swipeArea = document.getElementById('lightbox-swipe-area');
 
         function openLightbox(index) { const item = filteredItems[index]; showLightboxContent(item.src, item.title); }
-        function openLightboxForCommission(index) { const item = commissionSamples[index]; showLightboxContent(item.src, item.title); }
+        function openLightboxForGroup(index) { const item = currentActiveGroup[index]; showLightboxContent(item.src, item.title); }
         function showLightboxContent(src, title) { lightboxImage.src = src; lightboxCaption.textContent = title; lightbox.classList.remove('hidden'); lightbox.classList.add('flex'); document.body.style.overflow = 'hidden'; resetSwipeVariables(); }
         
         function closeLightbox() { lightbox.classList.add('hidden'); lightbox.classList.remove('flex'); document.body.style.overflow = ''; }
-        function nextImage() { if (currentLightboxSource === 'commission') { currentIndex = (currentIndex + 1) % commissionSamples.length; openLightboxForCommission(currentIndex); } else { currentIndex = (currentIndex + 1) % filteredItems.length; openLightbox(currentIndex); } }
-        function prevImage() { if (currentLightboxSource === 'commission') { currentIndex = (currentIndex - 1 + commissionSamples.length) % commissionSamples.length; openLightboxForCommission(currentIndex); } else { currentIndex = (currentIndex - 1 + filteredItems.length) % filteredItems.length; openLightbox(currentIndex); } }
+        
+        function nextImage() {
+            if (currentLightboxSource === 'group') {
+                currentIndex = (currentIndex + 1) % currentActiveGroup.length;
+                openLightboxForGroup(currentIndex);
+            } else {
+                currentIndex = (currentIndex + 1) % filteredItems.length;
+                openLightbox(currentIndex);
+            }
+        }
+
+        function prevImage() {
+            if (currentLightboxSource === 'group') {
+                currentIndex = (currentIndex - 1 + currentActiveGroup.length) % currentActiveGroup.length;
+                openLightboxForGroup(currentIndex);
+            } else {
+                currentIndex = (currentIndex - 1 + filteredItems.length) % filteredItems.length;
+                openLightbox(currentIndex);
+            }
+        }
 
         function resetSwipeVariables() { touchstartX = 0; touchendX = 0; }
         function handleSwipeGesture() {
