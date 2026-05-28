@@ -8,7 +8,6 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <script>
         tailwind.config = {
             theme: {
@@ -29,52 +28,58 @@
         }
     </script>
     <style>
-        /* 🛡️ เกราะบล็อกในระบบ (CSS) ป้องกันการเซฟรูปภาพทุกอุปกรณ์ */
         img {
             -webkit-touch-callout: none !important;
             -webkit-user-select: none !important;
-            -khtml-user-select: none !important;
-            -moz-user-select: none !important;
-            -ms-user-select: none !important;
             user-select: none !important;
             pointer-events: none !important;
         }
-
-        a, button, input, textarea, select, .gallery-item, #lightbox-close, #lightbox-prev, #lightbox-next, #lightbox-swipe-area {
+        a, button, input, textarea, select, .gallery-item, .commission-sample-item, #lightbox-close, #lightbox-prev, #lightbox-next {
             pointer-events: auto !important;
         }
-
-        /* Custom Masonry Grid */
         .masonry-grid {
             column-count: 1;
             column-gap: 1rem;
         }
-        @media (min-width: 640px) { .masonry-grid { column-count: 2; } }
-        @media (min-width: 1024px) { .masonry-grid { column-count: 3; } }
-        @media (min-width: 1280px) { .masonry-grid { column-count: 4; } }
-        
+        @media (min-width: 640px) {
+            .masonry-grid {
+                column-count: 2;
+            }
+        }
+        @media (min-width: 1024px) {
+            .masonry-grid {
+                column-count: 3;
+            }
+        }
+        @media (min-width: 1280px) {
+            .masonry-grid {
+                column-count: 4;
+            }
+        }
         .masonry-item {
             break-inside: avoid;
             margin-bottom: 1rem;
         }
-        
-        html { scroll-behavior: smooth; }
-        .lightbox { animation: fadeIn 0.3s ease-out; }
-        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
-        .lightbox-image-container { animation: scaleIn 0.3s ease-out; }
-        @keyframes scaleIn { from { transform: scale(0.9); opacity: 0; } to { transform: scale(1); opacity: 1; } }
-
-        #lightbox-swipe-area {
-            position: absolute;
-            inset: 0;
-            z-index: 5;
-            cursor: grab;
+        html {
+            scroll-behavior: smooth;
         }
-        #lightbox-swipe-area.grabbing { cursor: grabbing; }
+        .lightbox {
+            animation: fadeIn 0.3s ease-out;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        .lightbox-image-container {
+            animation: scaleIn 0.3s ease-out;
+        }
+        @keyframes scaleIn {
+            from { transform: scale(0.9); opacity: 0; }
+            to { transform: scale(1); opacity: 1; }
+        }
     </style>
 </head>
 <body class="bg-charcoal-900 text-white font-sans antialiased">
-
     <nav class="fixed top-0 left-0 right-0 z-50 bg-charcoal-900/95 backdrop-blur-md border-b border-charcoal-700">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex items-center justify-between h-16">
@@ -103,16 +108,11 @@
             </div>
         </div>
     </nav>
-
     <section id="home" class="min-h-screen flex items-center justify-center pt-16 px-4">
         <div class="max-w-4xl mx-auto text-center">
             <div class="mb-8">
-                <div class="w-32 h-32 mx-auto mb-6 rounded-full bg-gradient-to-br from-purple-500 via-pink-500 to-orange-400 p-1">
-                    <div class="w-full h-full rounded-full bg-charcoal-800 flex items-center justify-center">
-                        <svg class="w-16 h-16 text-white/80" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9.53 16.122a3 3 0 00-5.78 1.128 2.25 2.25 0 01-2.4 2.245 4.5 4.5 0 008.4-2.245c0-.399-.078-.78-.22-1.128zm0 0a15.998 15.998 0 003.388-1.62m-5.043-.025a15.994 15.994 0 011.622-3.395m3.42 3.42a15.995 15.995 0 004.764-4.648l3.876-5.814a1.151 1.151 0 00-1.597-1.597L14.146 6.32a15.996 15.996 0 00-4.649 4.763m3.42 3.42a6.776 6.776 0 00-3.42-3.42"></path>
-                        </svg>
-                    </div>
+                <div class="w-32 h-32 mx-auto mb-6 rounded-full bg-gradient-to-br from-purple-500 via-pink-500 to-orange-400 p-1 flex items-center justify-center overflow-hidden">
+                    <img src="pro1.jpg" alt="NICHEY Profile" class="w-full h-full object-cover rounded-full pointer-events-none">
                 </div>
             </div>
             <h1 class="text-4xl sm:text-5xl lg:text-6xl font-bold mb-6 leading-tight">
@@ -120,8 +120,7 @@
                 <span class="bg-gradient-to-r from-purple-400 via-pink-400 to-orange-400 bg-clip-text text-transparent">Illustrator</span>
             </h1>
             <p class="text-lg sm:text-xl text-white/60 max-w-2xl mx-auto mb-8 leading-relaxed">
-                Welcome to my creative space! I specialize in commissions, custom character design (งานคัสตอม), 
-                and adoptables. Each piece is crafted with passion and attention to detail.
+                Welcome to my creative space! I specialize in commissions, custom character design (งานคัสตอม), and adoptables. Each piece is crafted with passion and attention to detail.
             </p>
             <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
                 <a href="#gallery" class="px-8 py-3 bg-gradient-to-r from-purple-500 to-pink-500 rounded-full font-medium hover:opacity-90 transition-opacity duration-300">View Gallery</a>
@@ -132,195 +131,5 @@
             </div>
         </div>
     </section>
-
-    <section id="commissions" class="py-20 px-4">
-        <div class="max-w-6xl mx-auto">
-            <div class="text-center mb-12">
-                <h2 class="text-3xl sm:text-4xl font-bold mb-4">Commissions</h2>
-                <p class="text-white/50 max-w-xl mx-auto">View my pricing and commission details below. Browse through examples of my finished work in the gallery section below!</p>
-            </div>
-            <div class="mb-4">
-                <div class="relative bg-charcoal-800 rounded-2xl border-2 border-dashed border-charcoal-600 hover:border-purple-500/50 transition-colors duration-300 overflow-hidden select-none">
-                    <div class="aspect-[21/9] sm:aspect-[16/6] lg:aspect-[21/7] flex flex-col items-center justify-center p-8 text-center relative">
-                        <div class="absolute inset-0 flex flex-col items-center justify-center text-white/20 p-4 z-10 pointer-events-none">
-                            <svg class="w-20 h-20 sm:w-24 sm:h-24 mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"></path></svg>
-                            <h3 class="text-xl sm:text-2xl font-semibold text-white/40 mb-2">Commission Pricing Chart</h3>
-                            <p class="text-sm sm:text-base text-white/30">Replace this with your pricing banner image</p>
-                        </div>
-                        <img src="https://picsum.photos/seed/pricechart/1200/400" alt="Pricing Chart" class="absolute inset-0 w-full h-full object-cover opacity-30">
-                        <div class="absolute inset-0 z-20 bg-transparent"></div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section id="gallery" class="py-20 px-4">
-        <div class="max-w-7xl mx-auto">
-            <div class="text-center mb-16">
-                <h2 class="text-3xl sm:text-4xl font-bold mb-4">Gallery</h2>
-                <p class="text-white/50 max-w-xl mx-auto">A collection of my digital artwork and illustrations</p>
-            </div>
-            <div class="flex flex-wrap justify-center gap-3 mb-12">
-                <button class="filter-btn active px-6 py-2 rounded-full text-sm font-medium bg-white text-charcoal-900 transition-all duration-300" data-filter="all">All</button>
-                <button class="filter-btn px-6 py-2 rounded-full text-sm font-medium bg-charcoal-700 text-white/70 transition-all duration-300" data-filter="commission">Commissions</button>
-                <button class="filter-btn px-6 py-2 rounded-full text-sm font-medium bg-charcoal-700 text-white/70 transition-all duration-300" data-filter="adoptable">Adoptables</button>
-                <button class="filter-btn px-6 py-2 rounded-full text-sm font-medium bg-charcoal-700 text-white/70 transition-all duration-300" data-filter="custom">Custom Design</button>
-            </div>
-            <div class="masonry-grid" id="gallery-grid"></div>
-        </div>
-    </section>
-
-    <section id="contact" class="py-20 px-4 bg-charcoal-800">
-        <div class="max-w-4xl mx-auto text-center">
-            <h2 class="text-3xl sm:text-4xl font-bold mb-4 text-white">Hire & Contact Me</h2>
-            <p class="text-white/50 mb-10 max-w-xl mx-auto leading-relaxed">
-                For commission inquiries or business deals, please reach out to me via my Facebook page for the most direct and fastest communication.
-            </p>
-            
-            <div class="flex justify-center">
-                <a href="https://www.facebook.com/iamkingfofool" target="_blank" 
-                   class="inline-flex items-center gap-6 px-10 py-6 bg-[#1877F2] hover:bg-[#166fe5] rounded-2xl shadow-xl shadow-blue-500/10 transition-all duration-300 group transform hover:-translate-y-1">
-                    <div class="w-12 h-12 bg-white/10 rounded-xl flex items-center justify-center shrink-0">
-                        <i class="fa-brands fa-facebook text-3xl text-white"></i>
-                    </div>
-                    <div class="text-left">
-                        <span class="block text-white/80 text-sm font-medium uppercase tracking-wider mb-1">Contact via</span>
-                        <span class="text-xl font-bold text-white block">Facebook Messenger</span>
-                    </div>
-                </a>
-            </div>
-        </div>
-    </section>
-
-    <footer class="py-8 px-4 border-t border-charcoal-700">
-        <div class="max-w-6xl mx-auto flex flex-col md:flex-row items-center justify-between gap-4">
-            <p class="text-white/40 text-sm">© 2026 NICHEY. All rights reserved.</p>
-            <p class="text-white/40 text-sm">Made with ❤️ for digital art lovers</p>
-        </div>
-    </footer>
-
-    <div id="lightbox" class="fixed inset-0 z-50 hidden items-center justify-center bg-black/95 p-4 select-none">
-        <button id="lightbox-close" class="absolute top-4 right-4 p-2 text-white/70 hover:text-white transition-colors z-10"><svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg></button>
-        
-        <div id="lightbox-swipe-area" class="z-20"></div>
-
-        <button id="lightbox-prev" class="absolute left-4 top-1/2 -translate-y-1/2 p-2 text-white/70 hover:text-white transition-colors z-20 md:block hidden"><svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path></svg></button>
-        <button id="lightbox-next" class="absolute right-4 top-1/2 -translate-y-1/2 p-2 text-white/70 hover:text-white transition-colors z-20 md:block hidden"><svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg></button>
-        
-        <div class="max-w-5xl max-h-[90vh] relative lightbox-image-container flex flex-col items-center justify-center z-10 pointer-events-none">
-            <img id="lightbox-image" src="" alt="" class="max-w-full max-h-[85vh] object-contain rounded-lg">
-            <p id="lightbox-caption" class="text-center text-white/70 mt-4 text-sm"></p>
-        </div>
-    </div>
-
-    <script>
-        // 🛡️ บล็อกคีย์ลัดและคลิกขวา
-        document.addEventListener('contextmenu', (e) => {
-            if (e.target.tagName === 'IMG' || e.target.closest('.gallery-item') || e.target.closest('.lightbox-image-container')) {
-                e.preventDefault();
-                alert('ภาพผลงานมีลิขสิทธิ์ ไม่อนุญาตให้บันทึกภาพนะคะคุณลูกค้า 🎨✨');
-            }
-        });
-        document.addEventListener('keydown', (e) => {
-            if ((e.ctrlKey && (e.key === 's' || e.key === 'S' || e.key === 'u' || e.key === 'U')) || e.key === 'F12') e.preventDefault();
-        });
-
-        // 🎨 ฐานข้อมูลรูปภาพแกลเลอรีหลัก: ลบภาพ cos1 ออกเรียบร้อย เหลือแค่งานเดี่ยว csm1-csm5 งานคัสตอม และงานอดอปครับ
-        const galleryItems = [
-            { id: 1, src: 'myman-adoptable.jpg', title: 'My Man Adoptable', category: 'adoptable' },
-            { id: 2, src: 'happy-adoptable.jpg', title: 'Happy Adoptable', category: 'adoptable' },
-            { id: 3, src: 'statueman-adoptable.jpg', title: 'Statue Man Adoptable', category: 'adoptable' },
-            { id: 4, src: 'goldfish-adoptable.jpg', title: 'Goldfish Adoptable', category: 'adoptable' },
-            { id: 5, src: 'nut-adoptable.jpg', title: 'Nut Adoptable', category: 'adoptable' },
-            { id: 6, src: 'snowotter-adoptable.jpg', title: 'Snow Otter Adoptable', category: 'adoptable' },
-            { id: 7, src: 'groom-adoptable.jpg', title: 'Groom Adoptable', category: 'adoptable' },
-            { id: 8, src: 'talephoneman-adoptable.jpg', title: 'Telephone Man Adoptable', category: 'adoptable' },
-            { id: 9, src: 'mrblue-adoptable.jpg', title: 'Mr. Blue Adoptable', category: 'adoptable' },
-            { id: 10, src: 'cus2.jpg', title: 'Custom Design 2', category: 'custom' },
-            { id: 11, src: 'cus3.jpg', title: 'Custom Design 3', category: 'custom' },
-            { id: 12, src: 'cus4.jpg', title: 'Custom Design 4', category: 'custom' },
-            { id: 13, src: 'cus5.jpg', title: 'Custom Design 5', category: 'custom' },
-            { id: 14, src: 'cus6.jpg', title: 'Custom Design 6', category: 'custom' },
-            { id: 15, src: 'cus7.jpg', title: 'Custom Design 7', category: 'custom' },
-            { id: 16, src: 'cus8.jpg', title: 'Custom Design 8', category: 'custom' },
-            { id: 17, src: 'csm1.jpg', title: 'One Character - Sample 1', category: 'commission' },
-            { id: 18, src: 'csm2.jpg', title: 'One Character - Sample 2', category: 'commission' },
-            { id: 19, src: 'csm3.jpg', title: 'One Character - Sample 3', category: 'commission' },
-            { id: 20, src: 'csm4.jpg', title: 'One Character - Sample 4', category: 'commission' },
-            { id: 21, src: 'csm5.jpg', title: 'One Character - Sample 5', category: 'commission' }
-        ];
-
-        let currentFilter = 'all'; let currentIndex = 0; let filteredItems = galleryItems; 
-        let currentLightboxSource = 'gallery';
-        let touchstartX = 0; let touchendX = 0; const swipeThreshold = 50;
-
-        function renderGallery(filter = 'all') {
-            const grid = document.getElementById('gallery-grid');
-            filteredItems = filter === 'all' ? galleryItems : galleryItems.filter(item => item.category === filter);
-            grid.innerHTML = filteredItems.map((item, index) => `
-                <div class="masonry-item gallery-item cursor-pointer group" data-index="${index}">
-                    <div class="relative overflow-hidden rounded-xl bg-charcoal-700 bg-cover bg-center h-64" style="background-image: url('${item.src}');">
-                        <div class="w-full h-full absolute inset-0 z-10 bg-transparent"></div>
-                        <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-20">
-                            <div class="absolute bottom-0 left-0 right-0 p-4"><h3 class="text-white font-medium text-sm">${item.title}</h3><span class="text-white/60 text-xs capitalize">${item.category}</span></div>
-                        </div>
-                    </div>
-                </div>
-            `).join('');
-            document.querySelectorAll('.gallery-item').forEach(item => { item.addEventListener('click', () => { currentIndex = parseInt(item.dataset.index); currentLightboxSource = 'gallery'; openLightbox(currentIndex); }); });
-        }
-
-        document.querySelectorAll('.filter-btn').forEach(btn => {
-            btn.addEventListener('click', () => {
-                document.querySelectorAll('.filter-btn').forEach(b => { b.classList.remove('active', 'bg-white', 'text-charcoal-900'); b.classList.add('bg-charcoal-700', 'text-white/70'); });
-                btn.classList.add('active', 'bg-white', 'text-charcoal-900'); btn.classList.remove('bg-charcoal-700', 'text-white/70');
-                currentFilter = btn.dataset.filter; renderGallery(currentFilter);
-            });
-        });
-
-        const lightbox = document.getElementById('lightbox');
-        const lightboxImage = document.getElementById('lightbox-image');
-        const lightboxCaption = document.getElementById('lightbox-caption');
-        const swipeArea = document.getElementById('lightbox-swipe-area');
-
-        // ฟังก์ชันควบคุมป็อปอัป ซูมรูปภาพและตรวจจับ Swipe 
-        function openLightbox(index) { const item = filteredItems[index]; showLightboxContent(item.src, item.title); }
-        function showLightboxContent(src, title) { lightboxImage.src = src; lightboxCaption.textContent = title; lightbox.classList.remove('hidden'); lightbox.classList.add('flex'); document.body.style.overflow = 'hidden'; resetSwipeVariables(); }
-        
-        function closeLightbox() { lightbox.classList.add('hidden'); lightbox.classList.remove('flex'); document.body.style.overflow = ''; }
-        function nextImage() { currentIndex = (currentIndex + 1) % filteredItems.length; openLightbox(currentIndex); }
-        function prevImage() { currentIndex = (currentIndex - 1 + filteredItems.length) % filteredItems.length; openLightbox(currentIndex); }
-
-        function resetSwipeVariables() { touchstartX = 0; touchendX = 0; }
-        function handleSwipeGesture() {
-            if (touchendX < touchstartX - swipeThreshold) nextImage();
-            if (touchendX > touchstartX + swipeThreshold) prevImage();
-            resetSwipeVariables();
-        }
-
-        swipeArea.addEventListener('touchstart', (e) => { touchstartX = e.changedTouches[0].screenX; }, { passive: true });
-        swipeArea.addEventListener('touchend', (e) => { touchendX = e.changedTouches[0].screenX; handleSwipeGesture(); }, { passive: true });
-
-        let isDragging = false;
-        swipeArea.addEventListener('mousedown', (e) => { isDragging = true; touchstartX = e.screenX; swipeArea.classList.add('grabbing'); });
-        document.addEventListener('mousemove', (e) => { if (!isDragging) return; touchendX = e.screenX; });
-        document.addEventListener('mouseup', (e) => { if (!isDragging) return; isDragging = false; touchendX = e.screenX; swipeArea.classList.remove('grabbing'); handleSwipeGesture(); });
-
-        document.getElementById('lightbox-close').addEventListener('click', closeLightbox);
-        document.getElementById('lightbox-next').addEventListener('click', nextImage);
-        document.getElementById('lightbox-prev').addEventListener('click', prevImage);
-        lightbox.addEventListener('click', (e) => { if (e.target === lightbox || e.target === swipeArea) closeLightbox(); });
-        document.addEventListener('keydown', (e) => { if (!lightbox.classList.contains('hidden')) { if (e.key === 'Escape') closeLightbox(); if (e.key === 'ArrowRight') nextImage(); if (e.key === 'ArrowLeft') prevImage(); } });
-
-        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
-        const mobileMenu = document.getElementById('mobile-menu');
-        mobileMenuBtn.addEventListener('click', () => { mobileMenu.classList.toggle('hidden'); });
-        mobileMenu.querySelectorAll('a').forEach(link => { link.addEventListener('click', () => { mobileMenu.classList.add('hidden'); }); });
-
-        window.addEventListener('scroll', () => { if (window.pageYOffset > 100) document.querySelector('nav').classList.add('shadow-lg'); else document.querySelector('nav').classList.remove('shadow-lg'); });
-
-        renderGallery();
-    </script>
 </body>
 </html>
