@@ -69,6 +69,7 @@
             inset: 0;
             z-index: 5;
             cursor: grab;
+            touch-action: pan-x pan-y pinch-zoom; /* อนุญาตให้ใช้ระบบซูมของมือถือได้ */
         }
         #lightbox-swipe-area.grabbing { cursor: grabbing; }
     </style>
@@ -129,13 +130,13 @@
         </div>
     </section>
 
-    <!-- เปลี่ยนส่วน Commissions เป็นปุ่มลิงก์ไป Google Sheets -->
+    <!-- Commission Queue Section -->
     <section id="commissions" class="py-20 px-4 bg-charcoal-800/50">
         <div class="max-w-4xl mx-auto text-center">
             <h2 class="text-3xl sm:text-4xl font-bold mb-4">Commission Queue</h2>
             <p class="text-white/50 max-w-xl mx-auto mb-10">Check my current commission queue and progress status here.</p>
             <div class="flex justify-center">
-                <a href="https://docs.google.com/spreadsheets/d/1vsfEz6hDezVnfBXgCoYgUr4Q0Lz4yXvDU-oibRrAZV4/edit?usp=drivesdk" target="_blank" 
+                <a href="https://docs.google.com/spreadsheets/d/1AGTEdoCbqLVzyEBtlJtC1wTByLNFsItWNRixuZDGOFs/edit?usp=sharing" target="_blank" 
                    class="inline-flex items-center gap-5 px-8 py-5 bg-charcoal-800 hover:bg-charcoal-700 rounded-2xl shadow-xl border border-charcoal-600 hover:border-white/30 transition-all duration-300 group transform hover:-translate-y-1">
                     <div class="w-12 h-12 bg-green-500/20 rounded-xl flex items-center justify-center shrink-0">
                         <svg class="w-7 h-7 text-green-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -195,13 +196,24 @@
         </div>
     </footer>
 
+    <!-- แก้ไข Lightbox และปุ่ม -->
     <div id="lightbox" class="fixed inset-0 z-50 hidden items-center justify-center bg-black/95 p-4 select-none">
-        <button id="lightbox-close" class="absolute top-4 right-4 p-2 text-white/70 hover:text-white transition-colors z-30"><svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg></button>
+        <!-- ปุ่มปิด (Close) มีพื้นหลังดำโปร่งแสง -->
+        <button id="lightbox-close" class="absolute top-4 right-4 p-3 text-white/70 hover:text-white transition-colors z-50 bg-black/50 hover:bg-black/70 rounded-full">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+        </button>
         
         <div id="lightbox-swipe-area" class="z-20"></div>
 
-        <button id="lightbox-prev" class="absolute left-4 top-1/2 -translate-y-1/2 p-2 text-white/70 hover:text-white transition-colors z-20 md:block hidden"><svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path></svg></button>
-        <button id="lightbox-next" class="absolute right-4 top-1/2 -translate-y-1/2 p-2 text-white/70 hover:text-white transition-colors z-20 md:block hidden"><svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg></button>
+        <!-- ปุ่ม Previous แสดงผลตลอดเวลาทั้งในคอมและมือถือ -->
+        <button id="lightbox-prev" class="absolute left-2 sm:left-4 top-1/2 -translate-y-1/2 p-3 text-white/70 hover:text-white transition-colors z-40 bg-black/50 hover:bg-black/70 rounded-full">
+            <svg class="w-6 h-6 sm:w-8 sm:h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path></svg>
+        </button>
+        
+        <!-- ปุ่ม Next แสดงผลตลอดเวลาทั้งในคอมและมือถือ -->
+        <button id="lightbox-next" class="absolute right-2 sm:right-4 top-1/2 -translate-y-1/2 p-3 text-white/70 hover:text-white transition-colors z-40 bg-black/50 hover:bg-black/70 rounded-full">
+            <svg class="w-6 h-6 sm:w-8 sm:h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
+        </button>
         
         <div class="max-w-5xl max-h-[90vh] relative lightbox-image-container flex flex-col items-center justify-center z-10 pointer-events-none">
             <img id="lightbox-image" src="" alt="" class="max-w-full max-h-[85vh] object-contain rounded-lg">
@@ -254,6 +266,7 @@
         let currentFilter = 'all'; let currentIndex = 0; let filteredItems = galleryItems; 
         let currentLightboxSource = 'gallery';
         let touchstartX = 0; let touchendX = 0; const swipeThreshold = 50;
+        let isZooming = false; // ตัวแปรเช็กว่ากำลังซูมอยู่หรือเปล่า
 
         function renderGallery(filter = 'all') {
             const grid = document.getElementById('gallery-grid');
@@ -292,24 +305,62 @@
         function prevImage() { currentIndex = (currentIndex - 1 + filteredItems.length) % filteredItems.length; openLightbox(currentIndex); }
 
         function resetSwipeVariables() { touchstartX = 0; touchendX = 0; }
+        
         function handleSwipeGesture() {
+            if (isZooming) return; // ถ้ากำลังซูมอยู่ ไม่ต้องทำงานคำสั่งเลื่อนรูป
             if (touchendX < touchstartX - swipeThreshold) nextImage();
             if (touchendX > touchstartX + swipeThreshold) prevImage();
             resetSwipeVariables();
         }
 
-        swipeArea.addEventListener('touchstart', (e) => { touchstartX = e.changedTouches[0].screenX; }, { passive: true });
-        swipeArea.addEventListener('touchend', (e) => { touchendX = e.changedTouches[0].screenX; handleSwipeGesture(); }, { passive: true });
+        // เช็ก Touch Event ของมือถือ
+        swipeArea.addEventListener('touchstart', (e) => { 
+            // ถ้านิ้วแตะจอมากกว่า 1 นิ้ว แปลว่ากำลังจะซูม
+            if (e.touches && e.touches.length > 1) {
+                isZooming = true;
+                return;
+            }
+            isZooming = false;
+            touchstartX = e.changedTouches[0].screenX; 
+        }, { passive: true });
 
+        swipeArea.addEventListener('touchend', (e) => { 
+            if (isZooming) {
+                // รอสักพักค่อยปลดล็อกสถานะซูม ป้องกันจังหวะปล่อยนิ้วแล้วมันเด้ง
+                setTimeout(() => { isZooming = false; }, 300);
+                return;
+            }
+            touchendX = e.changedTouches[0].screenX; 
+            handleSwipeGesture(); 
+        }, { passive: true });
+
+        // การควบคุมเมาส์บนคอมพิวเตอร์
         let isDragging = false;
-        swipeArea.addEventListener('mousedown', (e) => { isDragging = true; touchstartX = e.screenX; swipeArea.classList.add('grabbing'); });
-        document.addEventListener('mousemove', (e) => { if (!isDragging) return; touchendX = e.screenX; });
-        document.addEventListener('mouseup', (e) => { if (!isDragging) return; isDragging = false; touchendX = e.screenX; swipeArea.classList.remove('grabbing'); handleSwipeGesture(); });
+        let mouseMoved = false;
+        swipeArea.addEventListener('mousedown', (e) => { isDragging = true; mouseMoved = false; touchstartX = e.screenX; swipeArea.classList.add('grabbing'); });
+        document.addEventListener('mousemove', (e) => { if (!isDragging) return; mouseMoved = true; touchendX = e.screenX; });
+        document.addEventListener('mouseup', (e) => { 
+            if (!isDragging) return; 
+            isDragging = false; 
+            swipeArea.classList.remove('grabbing'); 
+            if (mouseMoved) {
+                touchendX = e.screenX;
+                handleSwipeGesture();
+            }
+        });
 
         document.getElementById('lightbox-close').addEventListener('click', closeLightbox);
         document.getElementById('lightbox-next').addEventListener('click', nextImage);
         document.getElementById('lightbox-prev').addEventListener('click', prevImage);
-        lightbox.addEventListener('click', (e) => { if (e.target === lightbox || e.target === swipeArea) closeLightbox(); });
+        
+        // กันบั๊กเด้งออกเวลาซูมหรือเลื่อนดู
+        lightbox.addEventListener('click', (e) => { 
+            if (isZooming) return; // ไม่ให้ปิดถ้าระบบคิดว่ากำลังซูม
+            if (Math.abs(touchendX - touchstartX) > swipeThreshold) return; // ไม่ให้ปิดถ้าเป็นการลากนิ้ว/เมาส์
+
+            if (e.target === lightbox || e.target === swipeArea) closeLightbox(); 
+        });
+
         document.addEventListener('keydown', (e) => { if (!lightbox.classList.contains('hidden')) { if (e.key === 'Escape') closeLightbox(); if (e.key === 'ArrowRight') nextImage(); if (e.key === 'ArrowLeft') prevImage(); } });
 
         const mobileMenuBtn = document.getElementById('mobile-menu-btn');
